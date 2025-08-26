@@ -94,7 +94,7 @@ if [[ "$ENVIRONMENT" == "production" ]]; then
         openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
             -keyout ssl/key.pem \
             -out ssl/cert.pem \
-            -subj "/C=ES/ST=Madrid/L=Madrid/O=INIT/CN=localhost"
+            -subj "/C=MX/ST=CDMX/L=Ciudad de México/O=INIT/CN=init.com.mx"
     fi
 fi
 

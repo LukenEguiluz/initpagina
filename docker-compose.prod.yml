@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   # Base de datos PostgreSQL
@@ -15,7 +15,11 @@ services:
     networks:
       - init_network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-init_user} -d ${DB_NAME:-init_db}"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${DB_USER:-init_user} -d ${DB_NAME:-init_db}",
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -35,8 +39,8 @@ services:
       - DB_PASSWORD=${DB_PASSWORD:-init_password}
       - DB_HOST=db
       - DB_PORT=5432
-      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1,your-domain.com}
-      - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS:-https://your-domain.com}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1,init.com.mx}
+      - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS:-https://init.com.mx}
     volumes:
       - ./backend/media:/app/media
       - ./backend/staticfiles:/app/staticfiles

@@ -48,19 +48,19 @@ const Contact = () => {
     {
       icon: EmailIcon,
       title: "Email",
-      value: "info@init.com",
-      link: "mailto:info@init.com",
+      value: "info@init.com.mx",
+      link: "mailto:info@init.com.mx",
     },
     {
       icon: PhoneIcon,
       title: "Teléfono",
-      value: "+34 600 123 456",
-      link: "tel:+34600123456",
+      value: "+52 55 1234 5678",
+      link: "tel:+525512345678",
     },
     {
       icon: LocationIcon,
       title: "Oficina",
-      value: "Madrid, España",
+      value: "Ciudad de México, México",
       link: "#",
     },
     {
@@ -349,7 +349,7 @@ const Contact = () => {
               clase mundial.
             </p>
             <a
-              href="mailto:info@init.com"
+              href="mailto:info@init.com.mx"
               className="btn-primary text-lg px-8 py-4 inline-flex items-center group"
             >
               <EmailIcon className="h-5 w-5 mr-2" />

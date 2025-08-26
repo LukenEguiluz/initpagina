@@ -345,7 +345,7 @@ Cualquier información adicional relevante.
 
 Si tienes preguntas sobre cómo contribuir:
 
-- **Email**: dev@init.com
+- **Email**: dev@init.com.mx
 - **Discord**: [Servidor de la comunidad](https://discord.gg/init)
 - **Issues**: [GitHub Issues](https://github.com/init/INIT/issues)
 

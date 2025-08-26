@@ -31,11 +31,12 @@ nano .env
 ```
 
 **Variables importantes a configurar:**
+
 ```env
 SECRET_KEY=tu-clave-secreta-super-segura
 DB_PASSWORD=tu-contraseña-fuerte
-ALLOWED_HOSTS=tu-dominio.com,www.tu-dominio.com
-CORS_ALLOWED_ORIGINS=https://tu-dominio.com
+ALLOWED_HOSTS=init.com.mx,www.init.com.mx
+CORS_ALLOWED_ORIGINS=https://init.com.mx
 ```
 
 ### 3. Ejecutar despliegue
@@ -90,7 +91,7 @@ INIT/
 # Django
 SECRET_KEY=tu-clave-secreta
 DEBUG=False
-ALLOWED_HOSTS=tu-dominio.com,www.tu-dominio.com
+ALLOWED_HOSTS=init.com.mx,www.init.com.mx
 
 # Base de Datos
 DB_NAME=init_db
@@ -100,7 +101,7 @@ DB_HOST=db
 DB_PORT=5432
 
 # CORS
-CORS_ALLOWED_ORIGINS=https://tu-dominio.com
+CORS_ALLOWED_ORIGINS=https://init.com.mx
 
 # JWT
 JWT_SECRET_KEY=tu-jwt-secret
@@ -125,7 +126,7 @@ mkdir -p ssl
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -keyout ssl/key.pem \
     -out ssl/cert.pem \
-    -subj "/C=ES/ST=Madrid/L=Madrid/O=INIT/CN=tu-dominio.com"
+    -subj "/C=MX/ST=CDMX/L=Ciudad de México/O=INIT/CN=init.com.mx"
 ```
 
 ### Opción 2: Let's Encrypt (Producción)
@@ -136,11 +137,11 @@ sudo apt update
 sudo apt install certbot
 
 # Obtener certificado
-sudo certbot certonly --standalone -d tu-dominio.com -d www.tu-dominio.com
+sudo certbot certonly --standalone -d init.com.mx -d www.init.com.mx
 
 # Copiar certificados
-sudo cp /etc/letsencrypt/live/tu-dominio.com/fullchain.pem ssl/cert.pem
-sudo cp /etc/letsencrypt/live/tu-dominio.com/privkey.pem ssl/key.pem
+sudo cp /etc/letsencrypt/live/init.com.mx/fullchain.pem ssl/cert.pem
+sudo cp /etc/letsencrypt/live/init.com.mx/privkey.pem ssl/key.pem
 sudo chown $USER:$USER ssl/*
 ```
 
@@ -265,10 +266,10 @@ echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
 ```bash
 # Verificar estado de la aplicación
-curl -f http://tu-dominio.com/health
+curl -f http://init.com.mx/health
 
 # Verificar API
-curl -f http://tu-dominio.com/api/team/public/
+curl -f http://init.com.mx/api/team/public/
 ```
 
 ### Backups Automáticos

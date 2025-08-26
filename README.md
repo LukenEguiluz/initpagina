@@ -372,9 +372,9 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 ## 📞 Contacto
 
-- **Email**: info@init.com
+- **Email**: info@init.com.mx
 - **LinkedIn**: [INIT Company](https://linkedin.com/company/init)
-- **Website**: [init.com](https://init.com)
+- **Website**: [init.com.mx](https://init.com.mx)
 
 ---
 
