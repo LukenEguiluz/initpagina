@@ -55,7 +55,7 @@ services:
              python create_team_members.py &&
              gunicorn --bind 0.0.0.0:8000 --workers 4 --timeout 120 init_backend.wsgi:application"
 
-  # Frontend React (sin puertos expuestos)
+  # Frontend React
   frontend:
     build:
       context: .

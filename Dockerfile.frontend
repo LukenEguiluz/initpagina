@@ -31,5 +31,8 @@ RUN mkdir -p /var/log/nginx
 # Exponer puerto
 EXPOSE 80
 
+# Crear directorio para archivos estáticos
+RUN mkdir -p /usr/share/nginx/html
+
 # Comando para ejecutar Nginx
 CMD ["nginx", "-g", "daemon off;"]
