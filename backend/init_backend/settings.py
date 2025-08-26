@@ -138,6 +138,8 @@ CORS_ALLOWED_ORIGINS = [
     "https://init.com.mx",
     "http://www.init.com.mx",
     "https://www.init.com.mx",
+    "http://api.init.com.mx",
+    "https://api.init.com.mx",
 ]
 
 # Configuración adicional de CORS
