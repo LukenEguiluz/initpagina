@@ -1,4 +1,4 @@
-version: "3.8"
+# Docker Compose v3.8 (versión removida para compatibilidad)
 
 services:
   # Base de datos PostgreSQL
