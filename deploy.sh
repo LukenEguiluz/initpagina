@@ -24,10 +24,11 @@ echo "📁 Creando directorios..."
 mkdir -p ssl webroot logs/nginx backend/media backend/staticfiles
 success "Directorios creados"
 
-# 3. Crear .env del frontend
-echo "📝 Configurando frontend..."
+# 3. Crear archivos .env
+echo "📝 Configurando archivos .env..."
 cd frontend && ./create_env.sh && cd ..
-success "Frontend configurado"
+cd backend && ./create_env.sh && cd ..
+success "Archivos .env configurados"
 
 # 4. Generar certificados SSL
 echo "🔒 Generando certificados SSL..."
