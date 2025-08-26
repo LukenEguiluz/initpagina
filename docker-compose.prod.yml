@@ -55,22 +55,37 @@ services:
              python create_team_members.py &&
              gunicorn --bind 0.0.0.0:8000 --workers 4 --timeout 120 init_backend.wsgi:application"
 
-  # Frontend React con Nginx
+  # Frontend React (sin puertos expuestos)
   frontend:
     build:
       context: .
       dockerfile: Dockerfile.frontend
     container_name: init_frontend
     restart: unless-stopped
+    networks:
+      - init_network
+    depends_on:
+      - backend
+
+  # Nginx con SSL
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: init_nginx
+    restart: unless-stopped
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - ./ssl:/etc/nginx/ssl
+      - ./webroot:/var/www/html
       - ./logs/nginx:/var/log/nginx
+      - ./logs/certbot:/var/log/letsencrypt
     networks:
       - init_network
     depends_on:
+      - frontend
       - backend
 
 volumes:

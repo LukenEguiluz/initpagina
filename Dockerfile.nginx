@@ -1,0 +1,27 @@
+# Dockerfile para Nginx con SSL
+FROM nginx:alpine
+
+# Instalar certbot y herramientas SSL
+RUN apk add --no-cache \
+    certbot \
+    certbot-nginx \
+    openssl \
+    curl
+
+# Crear directorios necesarios
+RUN mkdir -p /var/www/html/.well-known/acme-challenge \
+    /etc/nginx/ssl \
+    /var/log/nginx
+
+# Copiar configuración de Nginx
+COPY nginx.ssl.conf /etc/nginx/nginx.conf
+
+# Copiar script de renovación SSL
+COPY renew-ssl.sh /usr/local/bin/renew-ssl.sh
+RUN chmod +x /usr/local/bin/renew-ssl.sh
+
+# Exponer puertos
+EXPOSE 80 443
+
+# Comando para ejecutar Nginx
+CMD ["nginx", "-g", "daemon off;"]

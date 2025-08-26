@@ -78,60 +78,17 @@ fi
 # 7. Generar certificados SSL iniciales
 info "🔒 Generando certificados SSL iniciales..."
 if [[ ! -f "ssl/cert.pem" || ! -f "ssl/key.pem" ]]; then
-    # Crear configuración temporal de Nginx para Let's Encrypt
-    sudo tee /etc/nginx/sites-available/init-temp << 'EOF'
-server {
-    listen 80;
-    server_name init.com.mx www.init.com.mx api.init.com.mx;
-    
-    location /.well-known/acme-challenge/ {
-        root /var/www/html;
-    }
-    
-    location / {
-        return 200 "Configurando SSL...";
-        add_header Content-Type text/plain;
-    }
-}
-EOF
-
-    # Habilitar sitio temporal
-    sudo ln -sf /etc/nginx/sites-available/init-temp /etc/nginx/sites-enabled/
-    sudo rm -f /etc/nginx/sites-enabled/default
-    sudo mkdir -p /var/www/html/.well-known/acme-challenge
-    sudo systemctl restart nginx
-
-    # Generar certificados
-    if sudo certbot certonly --webroot \
-        --webroot-path=/var/www/html \
-        --email info@init.com.mx \
-        --agree-tos \
-        --no-eff-email \
-        --domains init.com.mx,www.init.com.mx,api.init.com.mx; then
-        
-        # Copiar certificados
-        sudo cp /etc/letsencrypt/live/init.com.mx/fullchain.pem ssl/cert.pem
-        sudo cp /etc/letsencrypt/live/init.com.mx/privkey.pem ssl/key.pem
-        sudo chown -R $USER:$USER ssl/
-        sudo chmod 600 ssl/key.pem
-        sudo chmod 644 ssl/cert.pem
-        
-        success "Certificados SSL generados"
-    else
-        warn "No se pudieron generar certificados SSL con Let's Encrypt"
-        info "Generando certificados autofirmados..."
-        sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-            -keyout ssl/key.pem \
-            -out ssl/cert.pem \
-            -subj '/C=MX/ST=CDMX/L=Ciudad de México/O=INIT/CN=init.com.mx' \
-            -addext 'subjectAltName=DNS:init.com.mx,DNS:www.init.com.mx,DNS:api.init.com.mx'
-        sudo chown -R $USER:$USER ssl/
-        success "Certificados autofirmados generados"
-    fi
-
-    # Limpiar configuración temporal
-    sudo rm -f /etc/nginx/sites-enabled/init-temp
-    sudo systemctl restart nginx
+    # Generar certificados autofirmados iniciales
+    info "Generando certificados autofirmados iniciales..."
+    sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+        -keyout ssl/key.pem \
+        -out ssl/cert.pem \
+        -subj '/C=MX/ST=CDMX/L=Ciudad de México/O=INIT/CN=init.com.mx' \
+        -addext 'subjectAltName=DNS:init.com.mx,DNS:www.init.com.mx,DNS:api.init.com.mx'
+    sudo chown -R $USER:$USER ssl/
+    sudo chmod 600 ssl/key.pem
+    sudo chmod 644 ssl/cert.pem
+    success "Certificados autofirmados generados"
 else
     success "Certificados SSL ya existen"
 fi
@@ -185,24 +142,23 @@ fi
 # 13. Configurar renovación automática
 info "🔄 Configurando renovación automática..."
 
-# Crear script de renovación
-sudo tee /usr/local/bin/renew-ssl.sh << 'EOF'
+# Configurar renovación automática con Docker
+info "🔄 Configurando renovación automática con Docker..."
+
+# Crear script de renovación para Docker
+sudo tee /usr/local/bin/renew-ssl-docker.sh << 'EOF'
 #!/bin/bash
 cd /home/kaki/Init
-certbot renew --quiet
+docker exec init_nginx /usr/local/bin/renew-ssl.sh
 if [ $? -eq 0 ]; then
-    cp /etc/letsencrypt/live/init.com.mx/fullchain.pem ssl/cert.pem
-    cp /etc/letsencrypt/live/init.com.mx/privkey.pem ssl/key.pem
-    chown -R kaki:kaki ssl/
-    docker compose -f docker-compose.prod.yml restart frontend
     echo "$(date): SSL certificates renewed successfully" >> /var/log/ssl-renewal.log
 fi
 EOF
 
-sudo chmod +x /usr/local/bin/renew-ssl.sh
+sudo chmod +x /usr/local/bin/renew-ssl-docker.sh
 
 # Agregar al crontab para renovación automática
-(crontab -l 2>/dev/null | grep -v "renew-ssl.sh"; echo "0 12 * * * /usr/local/bin/renew-ssl.sh") | crontab -
+(crontab -l 2>/dev/null | grep -v "renew-ssl-docker.sh"; echo "0 12 * * * /usr/local/bin/renew-ssl-docker.sh") | crontab -
 success "Renovación automática configurada (diaria a las 12:00 PM)"
 
 # 14. Mostrar información final
