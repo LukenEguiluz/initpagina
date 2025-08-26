@@ -119,8 +119,41 @@ fi
 # ---------- Build & Up ----------
 info "Construyendo y levantando contenedores..."
 # Usa progreso plain para logs más legibles en CI
-DOCKER_BUILDKIT=1 docker compose -f "${COMPOSE_FILE}" build --pull --progress=plain
-docker compose -f "${COMPOSE_FILE}" up -d
+if ! DOCKER_BUILDKIT=1 docker compose -f "${COMPOSE_FILE}" build --pull --progress=plain; then
+    error "❌ Error en el build. Verificando problemas comunes..."
+    
+    # Verificar que los archivos necesarios existen
+    if [[ ! -f "frontend/package.json" ]]; then
+        error "❌ frontend/package.json no encontrado"
+        exit 1
+    fi
+    
+    if [[ ! -f "backend/requirements.txt" ]]; then
+        error "❌ backend/requirements.txt no encontrado"
+        exit 1
+    fi
+    
+    # Intentar build individual para identificar el problema
+    info "🔍 Intentando build individual del frontend..."
+    if ! docker build -f Dockerfile.frontend .; then
+        error "❌ Error en build del frontend"
+        exit 1
+    fi
+    
+    info "🔍 Intentando build individual del backend..."
+    if ! docker build -f Dockerfile.backend .; then
+        error "❌ Error en build del backend"
+        exit 1
+    fi
+    
+    error "❌ Build individual exitoso pero compose falló. Revisa la configuración."
+    exit 1
+fi
+
+if ! docker compose -f "${COMPOSE_FILE}" up -d; then
+    error "❌ Error al levantar contenedores"
+    exit 1
+fi
 
 # ---------- Espera de servicios ----------
 # Si tienes healthchecks en tus servicios (Dockerfile/compose), puedes esperar por ellos.
