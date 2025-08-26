@@ -127,6 +127,8 @@ celerybeat.pid
 env/
 venv/
 ENV/
+virtualenv/
+# Backup environment directories
 env.bak/
 venv.bak/
 
