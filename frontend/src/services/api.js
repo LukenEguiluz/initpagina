@@ -67,17 +67,17 @@ export const authAPI = {
 
 export const teamAPI = {
   getTeamMembers: async () => {
-    const response = await api.get("/team/public/");
+    const response = await api.get("/team/public");
     return response.data;
   },
 
   getOwners: async () => {
-    const response = await api.get("/team/owners/");
+    const response = await api.get("/team/owners");
     return response.data;
   },
 
   getInterns: async () => {
-    const response = await api.get("/team/interns/");
+    const response = await api.get("/team/interns");
     return response.data;
   },
 };
