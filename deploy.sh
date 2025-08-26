@@ -46,7 +46,7 @@ if ! command -v docker &> /dev/null; then
     exit 1
 fi
 
-if ! command -v docker-compose &> /dev/null; then
+if ! command -v docker compose &> /dev/null; then
     print_error "Docker Compose no está instalado"
     exit 1
 fi
@@ -100,7 +100,7 @@ fi
 
 # Parar contenedores existentes
 print_message "Parando contenedores existentes..."
-docker-compose -f docker-compose.prod.yml down --remove-orphans
+docker compose -f docker compose.prod.yml down --remove-orphans
 
 # Limpiar imágenes no utilizadas
 print_message "Limpiando imágenes no utilizadas..."
@@ -108,7 +108,7 @@ docker system prune -f
 
 # Construir y levantar contenedores
 print_message "Construyendo y levantando contenedores..."
-docker-compose -f docker-compose.prod.yml up -d --build
+docker compose -f docker compose.prod.yml up -d --build
 
 # Esperar a que los servicios estén listos
 print_message "Esperando a que los servicios estén listos..."
@@ -116,11 +116,11 @@ sleep 30
 
 # Verificar estado de los contenedores
 print_message "Verificando estado de los contenedores..."
-docker-compose -f docker-compose.prod.yml ps
+docker compose -f docker compose.prod.yml ps
 
 # Verificar logs
 print_message "Verificando logs..."
-docker-compose -f docker-compose.prod.yml logs --tail=20
+docker compose -f docker compose.prod.yml logs --tail=20
 
 # Verificar conectividad
 print_message "Verificando conectividad..."
@@ -128,8 +128,8 @@ if curl -f http://localhost/health > /dev/null 2>&1; then
     print_message "✅ Aplicación respondiendo correctamente"
 else
     print_warning "⚠️  Aplicación no responde inmediatamente, verificando logs..."
-    docker-compose -f docker-compose.prod.yml logs backend
-    docker-compose -f docker-compose.prod.yml logs frontend
+    docker compose -f docker compose.prod.yml logs backend
+    docker compose -f docker compose.prod.yml logs frontend
 fi
 
 # Mostrar información de despliegue
@@ -137,26 +137,26 @@ print_header "Despliegue Completado"
 
 echo -e "${GREEN}✅ Aplicación desplegada exitosamente${NC}"
 echo -e "${BLUE}🌐 URL:${NC} http://$(curl -s ifconfig.me)"
-echo -e "${BLUE}📊 Estado:${NC} docker-compose -f docker-compose.prod.yml ps"
-echo -e "${BLUE}📋 Logs:${NC} docker-compose -f docker-compose.prod.yml logs -f"
-echo -e "${BLUE}🛑 Parar:${NC} docker-compose -f docker-compose.prod.yml down"
+echo -e "${BLUE}📊 Estado:${NC} docker compose -f docker compose.prod.yml ps"
+echo -e "${BLUE}📋 Logs:${NC} docker compose -f docker compose.prod.yml logs -f"
+echo -e "${BLUE}🛑 Parar:${NC} docker compose -f docker compose.prod.yml down"
 
 # Mostrar comandos útiles
 print_header "Comandos Útiles"
 
 echo -e "${YELLOW}Ver logs en tiempo real:${NC}"
-echo "docker-compose -f docker-compose.prod.yml logs -f"
+echo "docker compose -f docker compose.prod.yml logs -f"
 
 echo -e "${YELLOW}Reiniciar servicios:${NC}"
-echo "docker-compose -f docker-compose.prod.yml restart"
+echo "docker compose -f docker compose.prod.yml restart"
 
 echo -e "${YELLOW}Actualizar aplicación:${NC}"
 echo "git pull && ./deploy.sh $ENVIRONMENT"
 
 echo -e "${YELLOW}Backup de base de datos:${NC}"
-echo "docker-compose -f docker-compose.prod.yml exec db pg_dump -U \$DB_USER \$DB_NAME > backup.sql"
+echo "docker compose -f docker compose.prod.yml exec db pg_dump -U \$DB_USER \$DB_NAME > backup.sql"
 
 echo -e "${YELLOW}Restaurar base de datos:${NC}"
-echo "docker-compose -f docker-compose.prod.yml exec -T db psql -U \$DB_USER \$DB_NAME < backup.sql"
+echo "docker compose -f docker compose.prod.yml exec -T db psql -U \$DB_USER \$DB_NAME < backup.sql"
 
 print_message "Despliegue completado exitosamente! 🚀"
