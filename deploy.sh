@@ -47,16 +47,16 @@ fi
 
 # 5. Parar contenedores
 echo "⏹️  Parando contenedores..."
-docker compose -f docker-compose.prod.yml down 2>/dev/null || true
+docker compose down 2>/dev/null || true
 success "Contenedores detenidos"
 
 # 6. Reconstruir y levantar
 echo "🔨 Reconstruyendo contenedores..."
-docker compose -f docker-compose.prod.yml build --pull
+docker compose build --pull
 success "Contenedores construidos"
 
 echo "🚀 Levantando contenedores..."
-docker compose -f docker-compose.prod.yml up -d
+docker compose up -d
 success "Contenedores levantados"
 
 # 7. Esperar y verificar
@@ -64,7 +64,7 @@ echo "⏳ Esperando a que estén listos..."
 sleep 15
 
 echo "🔍 Verificando estado..."
-docker compose -f docker-compose.prod.yml ps
+docker compose ps
 
 # 8. Verificar que funciona
 echo "🧪 Probando servicios..."
@@ -94,8 +94,8 @@ echo "   API:      https://api.init.com.mx"
 echo "   Health:   https://api.init.com.mx/health"
 echo ""
 echo "🔧 Comandos útiles:"
-echo "   Ver logs: docker compose -f docker-compose.prod.yml logs"
-echo "   Reiniciar: docker compose -f docker-compose.prod.yml restart"
-echo "   Parar: docker compose -f docker-compose.prod.yml down"
+echo "   Ver logs: docker compose logs"
+echo "   Reiniciar: docker compose restart"
+echo "   Parar: docker compose down"
 echo ""
 echo "✅ ¡Todo listo!"

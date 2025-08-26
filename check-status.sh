@@ -5,19 +5,19 @@ echo "========================================"
 
 # Verificar estado de contenedores
 echo "📋 Estado de contenedores:"
-docker compose -f docker-compose.prod.yml ps
+docker compose ps
 
 echo ""
 echo "📋 Logs de Nginx (últimas 10 líneas):"
-docker compose -f docker-compose.prod.yml logs --tail=10 nginx
+docker compose logs --tail=10 nginx
 
 echo ""
 echo "📋 Logs de Frontend (últimas 10 líneas):"
-docker compose -f docker-compose.prod.yml logs --tail=10 frontend
+docker compose logs --tail=10 frontend
 
 echo ""
 echo "📋 Logs de Backend (últimas 10 líneas):"
-docker compose -f docker-compose.prod.yml logs --tail=10 backend
+docker compose logs --tail=10 backend
 
 echo ""
 echo "🌐 Verificando DNS:"

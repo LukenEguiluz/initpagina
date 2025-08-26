@@ -72,7 +72,7 @@ INIT/
 ├── Dockerfile.backend          # Backend Django
 ├── Dockerfile.frontend         # Frontend React + Nginx
 ├── docker-compose.yml          # Desarrollo completo
-├── docker-compose.prod.yml     # Producción simplificado
+├── docker-compose.yml          # Configuración principal
 ├── nginx.conf                  # Configuración Nginx dev
 ├── nginx.prod.conf             # Configuración Nginx prod
 ├── deploy.sh                   # Script de despliegue
@@ -164,44 +164,44 @@ git pull && ./deploy.sh production
 
 ```bash
 # Ver estado
-docker-compose -f docker-compose.prod.yml ps
+docker compose ps
 
 # Ver logs
-docker-compose -f docker-compose.prod.yml logs -f
+docker compose logs -f
 
 # Reiniciar servicios
-docker-compose -f docker-compose.prod.yml restart
+docker compose restart
 
 # Parar servicios
-docker-compose -f docker-compose.prod.yml down
+docker compose down
 
 # Parar y eliminar volúmenes
-docker-compose -f docker-compose.prod.yml down -v
+docker compose down -v
 ```
 
 ### Base de Datos
 
 ```bash
 # Backup
-docker-compose -f docker-compose.prod.yml exec db \
+docker compose exec db \
     pg_dump -U $DB_USER $DB_NAME > backup_$(date +%Y%m%d_%H%M%S).sql
 
 # Restaurar
-docker-compose -f docker-compose.prod.yml exec -T db \
+docker compose exec -T db \
     psql -U $DB_USER $DB_NAME < backup.sql
 
 # Conectar a base de datos
-docker-compose -f docker-compose.prod.yml exec db psql -U $DB_USER $DB_NAME
+docker compose exec db psql -U $DB_USER $DB_NAME
 ```
 
 ### Logs y Monitoreo
 
 ```bash
 # Logs en tiempo real
-docker-compose -f docker-compose.prod.yml logs -f
+docker compose logs -f
 
 # Logs de un servicio específico
-docker-compose -f docker-compose.prod.yml logs -f backend
+docker compose logs -f backend
 
 # Ver uso de recursos
 docker stats
@@ -283,7 +283,7 @@ DATE=$(date +%Y%m%d_%H%M%S)
 BACKUP_DIR="/backups"
 
 # Crear backup de base de datos
-docker-compose -f docker-compose.prod.yml exec -T db \
+docker compose exec -T db \
     pg_dump -U $DB_USER $DB_NAME > $BACKUP_DIR/db_$DATE.sql
 
 # Backup de archivos de media
@@ -320,20 +320,20 @@ sudo nano /etc/logrotate.d/init-app
 
 ```bash
 # Verificar logs
-docker-compose -f docker-compose.prod.yml logs
+docker compose logs
 
 # Verificar variables de entorno
-docker-compose -f docker-compose.prod.yml config
+docker compose config
 ```
 
 #### 2. Base de datos no conecta
 
 ```bash
 # Verificar estado de PostgreSQL
-docker-compose -f docker-compose.prod.yml exec db pg_isready
+docker compose exec db pg_isready
 
 # Verificar variables de entorno
-docker-compose -f docker-compose.prod.yml exec backend env | grep DB
+docker compose exec backend env | grep DB
 ```
 
 #### 3. SSL no funciona
@@ -343,7 +343,7 @@ docker-compose -f docker-compose.prod.yml exec backend env | grep DB
 openssl x509 -in ssl/cert.pem -text -noout
 
 # Verificar configuración Nginx
-docker-compose -f docker-compose.prod.yml exec frontend nginx -t
+docker compose exec frontend nginx -t
 ```
 
 #### 4. Memoria insuficiente
@@ -369,11 +369,11 @@ docker volume ls
 docker network ls
 
 # Información de contenedores
-docker-compose -f docker-compose.prod.yml ps
-docker-compose -f docker-compose.prod.yml top
+docker compose ps
+docker compose top
 
 # Logs detallados
-docker-compose -f docker-compose.prod.yml logs --tail=100
+docker compose logs --tail=100
 ```
 
 ## 🔄 Actualizaciones
@@ -396,7 +396,7 @@ git pull origin main
 ```bash
 # 1. Actualizar requirements.txt
 # 2. Reconstruir imágenes
-docker-compose -f docker-compose.prod.yml build --no-cache
+docker compose build --no-cache
 
 # 3. Redesplegar
 ./deploy.sh production
@@ -413,7 +413,7 @@ docker-compose -f docker-compose.prod.yml build --no-cache
 ### Configuración para Alto Tráfico
 
 ```yaml
-# docker-compose.prod.yml
+# docker-compose.yml
 services:
   backend:
     deploy:
