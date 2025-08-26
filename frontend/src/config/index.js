@@ -1,8 +1,7 @@
 // Configuración de la aplicación
 export const config = {
   // API Configuration
-  API_BASE_URL:
-    import.meta.env.VITE_API_BASE_URL || "http://localhost:8000/api",
+  API_BASE_URL: import.meta.env.VITE_API_BASE_URL || "https://api.init.com.mx",
 
   // App Configuration
   APP_NAME: import.meta.env.VITE_APP_NAME || "INIT",
