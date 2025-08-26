@@ -4,8 +4,8 @@
 cat > .env << EOF
 # Django Settings
 SECRET_KEY=django-insecure-your-secret-key-here
-DEBUG=True
-ALLOWED_HOSTS=localhost,127.0.0.1
+DEBUG=False
+ALLOWED_HOSTS=localhost,127.0.0.1,api.init.com.mx,init.com.mx
 
 # PostgreSQL Database Settings
 DB_NAME=init_db
@@ -20,7 +20,7 @@ JWT_ACCESS_TOKEN_LIFETIME=60
 JWT_REFRESH_TOKEN_LIFETIME=1440
 
 # CORS Settings
-CORS_ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173,http://127.0.0.1:5173
+CORS_ALLOWED_ORIGINS=https://init.com.mx,https://www.init.com.mx,https://api.init.com.mx
 EOF
 
 echo "Archivo .env creado exitosamente en el directorio backend"
