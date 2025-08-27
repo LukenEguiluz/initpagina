@@ -70,7 +70,8 @@ dokku config:set api \
   ALLOWED_HOSTS="api.init.com.mx,.dokku.me,.herokuapp.com" \
   CORS_ALLOWED_ORIGINS="https://init.com.mx,https://www.init.com.mx" \
   PYTHONUNBUFFERED=1 \
-  TZ=America/Mexico_City
+  TZ=America/Mexico_City \
+  DISABLE_COLLECTSTATIC=1
 success "Variables de entorno configuradas para Django"
 
 echo ""
