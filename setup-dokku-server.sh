@@ -88,6 +88,9 @@ dokku config:set web \
 
 # Configurar Nginx para el frontend (SPA)
 dokku nginx:set web client-max-body-size 10M
+
+# Configurar Nginx para SPA routing
+dokku nginx:set web try-files "$uri $uri/ /index.html"
 success "Variables de entorno configuradas para React"
 
 echo ""
