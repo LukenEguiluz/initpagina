@@ -158,18 +158,7 @@ REST_FRAMEWORK = {
 }
 
 # CORS configuration
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "http://init.com.mx",
-    "https://init.com.mx",
-    "http://www.init.com.mx",
-    "https://www.init.com.mx",
-    "http://api.init.com.mx",
-    "https://api.init.com.mx",
-]
+CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', default='https://init.com.mx,https://www.init.com.mx').split(',')
 
 # Configuración adicional de CORS
 CORS_ALLOW_CREDENTIALS = True

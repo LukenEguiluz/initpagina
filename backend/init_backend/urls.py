@@ -19,12 +19,16 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
+from django.http import JsonResponse
 from accounts.views import LoginView, RegisterView, UserProfileView, logout
 from team.views import TeamMemberViewSet
 
 # Configurar el router para las APIs
 router = DefaultRouter()
 router.register(r'team', TeamMemberViewSet)
+
+def health_check(request):
+    return JsonResponse({'status': 'healthy', 'message': 'INIT API is running'})
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,6 +37,7 @@ urlpatterns = [
     path('api/auth/register/', RegisterView.as_view(), name='register'),
     path('api/auth/profile/', UserProfileView.as_view(), name='profile'),
     path('api/auth/logout/', logout, name='logout'),
+    path('health/', health_check, name='health'),
 ]
 
 # Servir archivos media en desarrollo
