@@ -71,6 +71,9 @@ dokku config:set api \
   CORS_ALLOWED_ORIGINS="https://init.com.mx,https://www.init.com.mx" \
   PYTHONUNBUFFERED=1 \
   TZ=America/Mexico_City
+
+# Crear directorio para archivos media
+dokku storage:mount api /var/lib/dokku/data/storage/api/media:/app/media
 success "Variables de entorno configuradas para Django"
 
 echo ""
