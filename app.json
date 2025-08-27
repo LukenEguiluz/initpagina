@@ -1,0 +1,38 @@
+{
+  "name": "INIT - Empresa de Desarrollo de Software",
+  "description": "Sitio web corporativo de INIT con autenticación y gestión de equipo",
+  "repository": "https://github.com/KakiGro/Init.git",
+  "keywords": ["django", "react", "postgresql", "init"],
+  "env": {
+    "SECRET_KEY": {
+      "description": "Clave secreta de Django",
+      "generator": "secret"
+    },
+    "DEBUG": {
+      "description": "Modo debug de Django",
+      "value": "False"
+    },
+    "ALLOWED_HOSTS": {
+      "description": "Hosts permitidos",
+      "value": ".herokuapp.com,.dokku.me"
+    },
+    "CORS_ALLOWED_ORIGINS": {
+      "description": "Orígenes permitidos para CORS",
+      "value": "https://init.com.mx,https://www.init.com.mx"
+    }
+  },
+  "addons": [
+    "heroku-postgresql:mini"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  }
+}
