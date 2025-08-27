@@ -82,6 +82,9 @@ dokku config:set web \
   VITE_APP_NAME=INIT \
   VITE_APP_VERSION=1.0.0 \
   VITE_DEV_MODE=false
+
+# Configurar Nginx para el frontend (SPA)
+dokku nginx:set web client-max-body-size 10M
 success "Variables de entorno configuradas para React"
 
 echo ""
