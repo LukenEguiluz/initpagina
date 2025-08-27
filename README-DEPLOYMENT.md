@@ -39,6 +39,7 @@ chmod +x setup-dokku-server.sh
 ```
 
 Este script automáticamente:
+
 - ✅ Instala plugin PostgreSQL
 - ✅ Crea aplicaciones `api` y `web`
 - ✅ Configura base de datos PostgreSQL
@@ -56,6 +57,7 @@ Ve a tu repositorio → Settings → Secrets → Actions y crea:
 ### 3️⃣ Configurar DNS
 
 En tu proveedor de DNS, apunta:
+
 - `init.com.mx` → IP del servidor
 - `api.init.com.mx` → IP del servidor
 
@@ -69,6 +71,7 @@ git push origin main
 ```
 
 Los workflows de GitHub Actions se ejecutarán automáticamente:
+
 - **Deploy Backend** - Cuando cambies archivos en `backend/`
 - **Deploy Frontend** - Cuando cambies archivos en `frontend/`
 
@@ -84,6 +87,7 @@ dokku letsencrypt:cron-job --add
 ## 🔧 Comandos Útiles
 
 ### Verificar Estado
+
 ```bash
 # Estado de aplicaciones
 dokku ps:report api
@@ -99,6 +103,7 @@ dokku config web
 ```
 
 ### Gestión de Aplicaciones
+
 ```bash
 # Reiniciar
 dokku ps:restart api
@@ -114,6 +119,7 @@ dokku run api python manage.py migrate
 ```
 
 ### Base de Datos
+
 ```bash
 # Conectar a PostgreSQL
 dokku postgres:connect api-db
@@ -138,32 +144,38 @@ dokku postgres:import api-db < backup.sql
 ## 🛠️ Solución de Problemas
 
 ### Error: "postgres:create no es un comando"
+
 ```bash
 # Instalar plugin PostgreSQL
 dokku plugin:install https://github.com/dokku/dokku-postgres.git
 ```
 
 ### Error: "Permission denied (publickey)" en Actions
+
 - Verifica que la llave pública esté en `dokku ssh-keys:list`
 - Verifica que el secret `SSH_PRIVATE_KEY` esté correcto
 
 ### Error: "No web listeners specified"
+
 - Se resuelve después del primer deploy exitoso
 - Verifica que el Procfile y Dockerfile estén correctos
 
 ### Error: Django 400/Bad Request
+
 ```bash
 # Agregar dominio a ALLOWED_HOSTS
 dokku config:set api ALLOWED_HOSTS="api.init.com.mx,.dokku.me,.herokuapp.com"
 ```
 
 ### Error: CORS bloquea peticiones
+
 ```bash
 # Agregar origen a CORS
 dokku config:set api CORS_ALLOWED_ORIGINS="https://init.com.mx,https://www.init.com.mx"
 ```
 
 ### Falta RAM en build de React
+
 ```bash
 # Crear swap de 2GB
 sudo fallocate -l 2G /swapfile
@@ -176,6 +188,7 @@ echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 ## 📝 Variables de Entorno
 
 ### Backend (api)
+
 - `DJANGO_SETTINGS_MODULE=init_backend.settings`
 - `SECRET_KEY` (generada automáticamente)
 - `DEBUG=False`
@@ -184,6 +197,7 @@ echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 - `DATABASE_URL` (configurada automáticamente por Dokku)
 
 ### Frontend (web)
+
 - `NODE_ENV=production`
 - `VITE_API_BASE_URL=https://api.init.com.mx`
 - `VITE_APP_NAME=INIT`
@@ -193,6 +207,7 @@ echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 ## 🎉 ¡Listo!
 
 Después de seguir estos pasos tendrás:
+
 - ✅ Backend Django desplegado en `https://api.init.com.mx`
 - ✅ Frontend React desplegado en `https://init.com.mx`
 - ✅ Base de datos PostgreSQL configurada
