@@ -6,26 +6,48 @@ on:
     paths:
       - "frontend/**"
       - ".github/workflows/deploy-frontend.yml"
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Branch/tag to deploy"
+        required: true
+        default: "main"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.9.0
+      - name: Build Docker image (frontend)
+        run: |
+          docker build -f frontend/Dockerfile -t frontend-image:${{ github.sha }} .
+
+      - name: Save image to tar
+        run: |
+          docker save frontend-image:${{ github.sha }} | gzip > frontend-image.tar.gz
+
+      - name: Copy image to server
+        uses: appleboy/scp-action@v0.1.7
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{ secrets.DOKKU_HOST }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "frontend-image.tar.gz"
+          target: "/tmp"
 
-      - name: Add Dokku host to known_hosts
-        run: |
-          ssh-keyscan -H ${{ secrets.DOKKU_HOST }} >> ~/.ssh/known_hosts || true
-          ssh-keyscan -H ${{ secrets.DOKKU_HOST }} -p 22 >> ~/.ssh/known_hosts || true
-
-      - name: Push frontend subtree to Dokku (web)
-        run: |
-          git remote add dokku-web dokku@${{ secrets.DOKKU_HOST }}:web || true
-          git subtree split --prefix frontend -b deploy-frontend
-          git push dokku-web deploy-frontend:main -f || exit 1
+      - name: Import & Deploy in Dokku
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DOKKU_HOST }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            gunzip -c /tmp/frontend-image.tar.gz | dokku docker:import web
+            IMAGE_ID=$(dokku ps:report web | awk -F': ' '/Docker image/ {print $2}')
+            dokku tags:deploy web "$IMAGE_ID"
+            rm -f /tmp/frontend-image.tar.gz
