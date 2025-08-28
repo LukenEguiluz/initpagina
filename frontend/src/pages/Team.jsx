@@ -10,73 +10,23 @@ import {
 const Team = () => {
   const [teamMembers, setTeamMembers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchTeam = async () => {
       try {
+        console.log("🔄 Intentando cargar datos del equipo desde la API...");
         const data = await teamAPI.getTeamMembers();
+        console.log("✅ Datos del equipo cargados:", data);
         setTeamMembers(data);
       } catch (err) {
-        // Datos de ejemplo si la API no está disponible
-        setTeamMembers([
-          {
-            id: 1,
-            name: "Enrique Jiménez Guevara",
-            position: "CEO & Fundador",
-            role: "owner",
-            bio: "Experto en estrategia empresarial y desarrollo de software con más de 10 años de experiencia en la industria tecnológica.",
-            expertise:
-              "Liderazgo estratégico, Desarrollo Full-Stack, Arquitectura de Software",
-            email: "enrique@init.com.mx",
-            linkedin: "https://linkedin.com/in/enrique-jimenez",
-            order: 1,
-          },
-          {
-            id: 2,
-            name: "Iñaki Guerrero Negrete",
-            position: "CTO & Fundador",
-            role: "owner",
-            bio: "Especialista en tecnologías emergentes y transformación digital con amplia experiencia en consultoría tecnológica.",
-            expertise: "Inteligencia Artificial, Cloud Computing, DevOps",
-            email: "inaki@init.com.mx",
-            linkedin: "https://linkedin.com/in/inaki-guerrero",
-            order: 2,
-          },
-          {
-            id: 3,
-            name: "Luken Eguiluz del Angel",
-            position: "COO & Fundador",
-            role: "owner",
-            bio: "Project Manager certificado con experiencia en gestión de equipos y entrega de proyectos de alta complejidad.",
-            expertise:
-              "Gestión de Proyectos, Metodologías Ágiles, Análisis de Negocios",
-            email: "luken@init.com.mx",
-            linkedin: "https://linkedin.com/in/luken-eguiluz",
-            order: 3,
-          },
-          {
-            id: 4,
-            name: "Carolina Martínez Valadezhoq",
-            position: "CEPA",
-            role: "owner",
-            bio: "Diseñadora UX/UI con pasión por crear experiencias digitales excepcionales y centradas en el usuario.",
-            expertise: "Diseño UX/UI, Investigación de Usuarios, Prototipado",
-            email: "carolina@init.com.mx",
-            linkedin: "https://linkedin.com/in/carolina-martinez",
-            order: 4,
-          },
-          {
-            id: 5,
-            name: "Xoan Pablo",
-            position: "Becario",
-            role: "intern",
-            bio: "Becario talentoso con gran potencial en desarrollo web y móvil, siempre dispuesto a aprender nuevas tecnologías.",
-            expertise: "React, Node.js, Desarrollo Móvil",
-            email: "xoan@init.com.mx",
-            linkedin: "https://linkedin.com/in/xoan-pablo",
-            order: 5,
-          },
-        ]);
+        console.error("❌ Error al cargar datos del equipo:", err);
+        console.error(
+          "🔍 Detalles del error:",
+          err.response?.data || err.message
+        );
+        setError(err.message || "Error al cargar los datos del equipo");
+        setTeamMembers([]);
       } finally {
         setIsLoading(false);
       }
@@ -94,6 +44,27 @@ const Team = () => {
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
           <p className="mt-4 text-slate-600">Cargando equipo...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="text-center max-w-md mx-auto p-6">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+            <h2 className="text-xl font-semibold text-red-800 mb-2">
+              Error al cargar el equipo
+            </h2>
+            <p className="text-red-600 mb-4">{error}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
+            >
+              Reintentar
+            </button>
+          </div>
         </div>
       </div>
     );
