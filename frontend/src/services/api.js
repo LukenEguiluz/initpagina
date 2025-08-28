@@ -67,6 +67,8 @@ export const authAPI = {
 
 export const teamAPI = {
   getTeamMembers: async () => {
+    console.log("🔗 API_BASE_URL:", API_BASE_URL);
+    console.log("🔗 URL completa:", `${API_BASE_URL}/api/team/public`);
     const response = await api.get("/api/team/public");
     return response.data;
   },
