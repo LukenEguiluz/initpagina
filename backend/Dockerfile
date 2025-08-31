@@ -31,6 +31,7 @@ RUN groupadd -r appuser && useradd -r -g appuser appuser
 
 # Copy installed packages and application
 COPY --from=build /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+COPY --from=build /usr/local/bin /usr/local/bin
 COPY --from=build /app /app
 
 # Change ownership to non-root user
