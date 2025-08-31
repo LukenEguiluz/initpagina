@@ -2,8 +2,7 @@
 FROM node:20-alpine AS build
 
 # Set environment variables to reduce memory usage
-ENV NODE_ENV=production \
-    NPM_CONFIG_CACHE=/tmp/npm-cache
+ENV NPM_CONFIG_CACHE=/tmp/npm-cache
 
 WORKDIR /app
 
