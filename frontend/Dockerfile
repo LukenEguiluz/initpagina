@@ -15,6 +15,9 @@ RUN npm ci --no-audit --no-fund --prefer-offline
 # Copy source code
 COPY . .
 
+# Create basic .env file for build
+RUN echo "VITE_API_BASE_URL=https://api.init.com.mx" > .env
+
 # Build with memory optimizations
 RUN npm run build
 
