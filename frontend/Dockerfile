@@ -30,14 +30,10 @@ COPY --from=build /app/dist /usr/share/nginx/html
 # Copy nginx configuration
 COPY nginx.conf.dokku /etc/nginx/conf.d/default.conf
 
-# Create non-root user (nginx group already exists in nginx:alpine)
-RUN adduser -S -D -H -u 1001 -h /var/cache/nginx -s /sbin/nologin -G nginx nginx
-
-# Set proper permissions
-RUN chown -R nginx:nginx /usr/share/nginx/html && \
-    chown -R nginx:nginx /var/cache/nginx && \
-    chown -R nginx:nginx /var/log/nginx && \
-    chown -R nginx:nginx /etc/nginx/conf.d
+# Asegura permisos sobre rutas que Nginx usa para escribir
+RUN set -eux; \
+    mkdir -p /var/cache/nginx /var/run /var/log/nginx; \
+    chown -R nginx:nginx /usr/share/nginx/html /var/cache/nginx /var/run /var/log/nginx
 
 # Switch to non-root user
 USER nginx
