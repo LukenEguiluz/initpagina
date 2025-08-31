@@ -11,7 +11,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies with memory optimizations
-RUN npm ci --only=production --no-audit --no-fund --prefer-offline
+RUN npm ci --no-audit --no-fund --prefer-offline
 
 # Copy source code
 COPY . .
