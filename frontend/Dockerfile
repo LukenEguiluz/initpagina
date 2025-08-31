@@ -30,14 +30,12 @@ COPY --from=build /app/dist /usr/share/nginx/html
 # Copy nginx configuration
 COPY nginx.conf.dokku /etc/nginx/conf.d/default.conf
 
-# Asegura permisos sobre rutas que Nginx usa para escribir
+# Asegura rutas de escritura para nginx (aun si arrancas como root, está bien tenerlo limpio)
 RUN set -eux; \
     mkdir -p /var/cache/nginx /var/run /var/log/nginx; \
     chown -R nginx:nginx /usr/share/nginx/html /var/cache/nginx /var/run /var/log/nginx
 
-# Switch to non-root user
-USER nginx
-
+# NO pongas USER nginx aquí (deja root para que el entrypoint funcione)
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
