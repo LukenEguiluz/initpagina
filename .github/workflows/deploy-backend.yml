@@ -21,36 +21,35 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
-
-      - name: Build Docker image (backend)
-        run: |
-          docker build -f backend/Dockerfile -t backend-image:${{ github.sha }} .
-
-      - name: Save image to tar
-        run: |
-          docker save backend-image:${{ github.sha }} | gzip > backend-image.tar.gz
-
-      - name: Copy image to server
-        uses: appleboy/scp-action@v0.1.7
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
-          host: ${{ secrets.DOKKU_HOST }}
-          username: root
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "backend-image.tar.gz"
-          target: "/tmp"
+          fetch-depth: 0
 
-      - name: Import & Deploy in Dokku
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
         with:
-          host: ${{ secrets.DOKKU_HOST }}
-          username: root
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            gunzip -c /tmp/backend-image.tar.gz | dokku docker:import api
-            # etiqueta la imagen importada con un tag
-            IMAGE_ID=$(dokku ps:report api | awk -F': ' '/Docker image/ {print $2}')
-            # o usa un tag fijo al importar; alternativamente:
-            dokku tags:deploy api "$IMAGE_ID"
-            rm -f /tmp/backend-image.tar.gz
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add Dokku host to known_hosts
+        run: |
+          ssh-keyscan -H ${{ secrets.DOKKU_HOST }} >> ~/.ssh/known_hosts || true
+          ssh-keyscan -H ${{ secrets.DOKKU_HOST }} -p 22 >> ~/.ssh/known_hosts || true
+
+      - name: Configure Dokku backend app
+        run: |
+          ssh dokku@${{ secrets.DOKKU_HOST }} apps:create api || true
+          ssh dokku@${{ secrets.DOKKU_HOST }} config:set --no-restart api DJANGO_SETTINGS_MODULE=init_backend.settings
+          ssh dokku@${{ secrets.DOKKU_HOST }} config:set --no-restart api PYTHONUNBUFFERED=1
+          ssh dokku@${{ secrets.DOKKU_HOST }} config:set --no-restart api DJANGO_DEBUG=False
+
+      - name: Push backend subtree to Dokku (api)
+        run: |
+          git remote add dokku-api dokku@${{ secrets.DOKKU_HOST }}:api || true
+          git subtree split --prefix backend -b deploy-backend
+          git push dokku-api deploy-backend:main -f || exit 1
+
+      - name: Cleanup
+        run: |
+          git branch -D deploy-backend || true
+          git remote remove dokku-api || true

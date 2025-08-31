@@ -1,13 +1,46 @@
 # frontend/Dockerfile
-FROM node:20-bullseye AS build
+FROM node:20-alpine AS build
+
+# Set environment variables to reduce memory usage
+ENV NODE_ENV=production \
+    NPM_CONFIG_CACHE=/tmp/npm-cache
+
 WORKDIR /app
+
+# Copy package files
 COPY package*.json ./
-RUN npm ci
+
+# Install dependencies with memory optimizations
+RUN npm ci --only=production --no-audit --no-fund --prefer-offline
+
+# Copy source code
 COPY . .
+
+# Build with memory optimizations
 RUN npm run build
 
+# Production stage with nginx
 FROM nginx:alpine
+
+# Copy built files
 COPY --from=build /app/dist /usr/share/nginx/html
+
+# Copy nginx configuration
 COPY nginx.conf.dokku /etc/nginx/conf.d/default.conf
+
+# Create non-root user
+RUN addgroup -g 1001 -S nginx && \
+    adduser -S -D -H -u 1001 -h /var/cache/nginx -s /sbin/nologin -G nginx -g nginx nginx
+
+# Set proper permissions
+RUN chown -R nginx:nginx /usr/share/nginx/html && \
+    chown -R nginx:nginx /var/cache/nginx && \
+    chown -R nginx:nginx /var/log/nginx && \
+    chown -R nginx:nginx /etc/nginx/conf.d
+
+# Switch to non-root user
+USER nginx
+
 EXPOSE 80
+
 CMD ["nginx", "-g", "daemon off;"]
