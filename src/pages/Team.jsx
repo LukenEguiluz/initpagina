@@ -67,13 +67,13 @@ const Team = () => {
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Nuestro Equipo</h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Conoce a los profesionales apasionados que hacen posible la transformación digital de tu empresa. Somos un equipo de 6 personas: 4 socios, un trabajador senior y un becario, comprometidos con la excelencia.
+              Conoce a los profesionales apasionados que hacen posible la transformación digital de tu empresa. Somos un equipo de 6 personas: 4 cofundadores, una consultora senior y un becario, comprometidos con la excelencia.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Socios Section */}
+      {/* Cofundadores Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -83,7 +83,7 @@ const Team = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Socios y Directores</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Cofundadores</h2>
             <p className="text-xl text-slate-600">Los líderes que guían nuestra visión y estrategia</p>
           </motion.div>
 
@@ -106,8 +106,8 @@ const Team = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Trabajador Senior</h2>
-              <p className="text-xl text-slate-600">Experiencia y referente técnico del equipo</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Consultoría</h2>
+              <p className="text-xl text-slate-600">Procesos de calidad, necesidades y seguimiento</p>
             </motion.div>
 
             <div className="flex justify-center">

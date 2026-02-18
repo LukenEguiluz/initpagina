@@ -72,6 +72,13 @@ const Home = () => {
     "Ciberseguridad Empresarial",
   ];
 
+  const portfolio = [
+    { name: "CONFE", description: "Soluciones de software y digitalización" },
+    { name: "JOFRA", description: "Proyectos de transformación digital" },
+    { name: "TRANSCOM", description: "Desarrollo y consultoría tecnológica" },
+    { name: "GELLER ABOGADOS", description: "Sistemas y procesos digitales" },
+  ];
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -250,7 +257,7 @@ const Home = () => {
                 soluciones digitales de vanguardia.
               </p>
               <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-                Nuestro equipo está compuesto por 4 socios, un trabajador senior y un becario,
+                Nuestro equipo está compuesto por 4 cofundadores, una consultora senior y un becario,
                 todos comprometidos con ofrecer soluciones de la más alta
                 calidad y con un enfoque personalizado para cada cliente.
               </p>
@@ -302,6 +309,49 @@ const Home = () => {
                 style={{ animationDelay: "2s" }}
               ></div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+              Proyectos y Clientes
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Empresas e instituciones con las que hemos trabajado en soluciones de software y digitalización
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {portfolio.map((client, index) => (
+              <motion.div
+                key={client.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="card-luxury p-6 text-center hover:scale-[1.02] transition-transform duration-300"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
+                  <span className="text-2xl font-bold text-white">
+                    {client.name.charAt(0)}
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">
+                  {client.name}
+                </h3>
+                <p className="text-sm text-slate-600">{client.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
