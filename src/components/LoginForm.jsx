@@ -56,7 +56,7 @@ const LoginForm = () => {
             transition={{ duration: 0.5 }}
             className="mx-auto flex justify-center rounded-2xl bg-white p-2 shadow-2xl"
           >
-            <img src="/logoinit.jpg" alt="INIT" className="h-16 w-16 object-contain" />
+            <img src="/Init-Logo.svg" alt="INIT" className="h-16 w-16 object-contain" />
           </motion.div>
           <h2 className="mt-8 text-center text-4xl font-bold text-slate-900">
             Bienvenido de Vuelta

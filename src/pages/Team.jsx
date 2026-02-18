@@ -63,7 +63,7 @@ const Team = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <div className="inline-flex items-center justify-center rounded-2xl bg-white p-2 shadow-lg mb-6">
-              <img src="/logoinit.jpg" alt="INIT" className="h-14 w-14 object-contain" />
+              <img src="/Init-Logo.svg" alt="INIT" className="h-14 w-14 object-contain" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Nuestro Equipo</h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">

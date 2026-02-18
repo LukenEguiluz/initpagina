@@ -34,7 +34,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center group">
               <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white p-1 shadow-lg group-hover:shadow-xl transition-shadow">
-                <img src="/logoinit.jpg" alt="INIT" className="h-full w-full object-contain" />
+                <img src="/Init-Logo.svg" alt="INIT" className="h-full w-full object-contain" />
               </span>
             </Link>
           </div>

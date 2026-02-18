@@ -102,7 +102,7 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="inline-flex items-center justify-center mb-8 rounded-3xl bg-white p-3 shadow-2xl"
             >
-              <img src="/logoinit.jpg" alt="INIT" className="w-24 h-24 md:w-28 md:h-28 object-contain" />
+              <img src="/Init-Logo.svg" alt="INIT" className="w-24 h-24 md:w-28 md:h-28 object-contain" />
             </motion.div>
 
             {/* Main Heading */}
