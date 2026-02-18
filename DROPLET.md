@@ -92,17 +92,108 @@ docker compose build --no-cache
 docker compose up -d
 ```
 
-## 8. (Opcional) Dominio y HTTPS
+## 8. Apuntar init.com.mx y redirigir www
 
-1. En DigitalOcean: **Networking** → **Domains** → añade tu dominio y apunta los DNS (A record a la IP del Droplet).
-2. En el Droplet, instala Certbot y obtén un certificado:
+El contenedor ya está configurado para:
+- **init.com.mx** → muestra la web
+- **www.init.com.mx** → redirección 301 a **init.com.mx**
+
+### DNS (en tu registrador o DigitalOcean)
+
+Donde tengas el dominio **init.com.mx** (GoDaddy, Namecheap, DigitalOcean Domains, etc.) configura:
+
+| Tipo | Nombre / Host | Valor / Apunta a | TTL |
+|------|----------------|-------------------|-----|
+| **A**  | `@` (o vacío) | **IP de tu Droplet** | 300 o por defecto |
+| **A**  | `www`         | **IP de tu Droplet** | 300 o por defecto |
+
+Si usas DigitalOcean → **Networking** → **Domains** → **Add Domain** → `init.com.mx`. Añade los registros A para `@` y `www` apuntando a la IP del Droplet.
+
+Tras guardar, espera unos minutos (hasta 48 h en casos raros). Luego:
+- **https://init.com.mx** → tu sitio
+- **https://www.init.com.mx** → redirige a **https://init.com.mx**
+
+## 9. HTTPS con renovación automática
+
+El contenedor pasa a escuchar en el puerto **8080** del host para que nginx use el 80 y el 443. Así puedes tener HTTPS con Let's Encrypt y que el certificado se renueve solo.
+
+### Requisito
+
+- **init.com.mx** y **www.init.com.mx** deben apuntar en DNS a la IP del Droplet (paso 8).
+
+### Opción A – Script automático (recomendado)
+
+En el Droplet, con el proyecto clonado en `/opt/init`:
 
 ```bash
-apt install -y certbot python3-certbot-nginx
-certbot --nginx -d tudominio.com
+cd /opt/init
+git pull
+chmod +x deploy/setup-https.sh
+./deploy/setup-https.sh
 ```
 
-Si usas solo el contenedor (sin nginx en el host), tendrías que exponer el puerto 443 y usar un proxy o un nginx en el host que apunte al contenedor. Para empezar basta con HTTP en el puerto 80.
+Cuando pida email, usa uno válido (p. ej. `admin@init.com.mx`). El script:
+
+1. Instala nginx y certbot
+2. Obtiene el certificado para init.com.mx y www.init.com.mx
+3. Configura nginx como proxy HTTPS hacia el contenedor (8080)
+4. Activa el **timer de certbot** para que renueve el certificado solo (2 veces al día; Let's Encrypt renueva cuando faltan &lt; 30 días)
+
+### Opción B – Paso a paso manual
+
+1. **Contenedor en 8080** (ya está así en `docker-compose.yml`):
+
+   ```bash
+   cd /opt/init && docker compose up -d --build
+   ```
+
+2. **Instalar nginx y certbot en el host:**
+
+   ```bash
+   apt update && apt install -y nginx certbot python3-certbot-nginx
+   mkdir -p /var/www/certbot
+   ```
+
+3. **Configuración inicial (solo puerto 80) para obtener el certificado:**
+
+   ```bash
+   cp /opt/init/deploy/nginx-bootstrap.conf /etc/nginx/sites-available/init.com.mx
+   ln -sf /etc/nginx/sites-available/init.com.mx /etc/nginx/sites-enabled/
+   rm -f /etc/nginx/sites-enabled/default
+   nginx -t && systemctl reload nginx
+   ```
+
+4. **Obtener certificado Let's Encrypt:**
+
+   ```bash
+   certbot certonly --webroot -w /var/www/certbot -d init.com.mx -d www.init.com.mx --agree-tos -m admin@init.com.mx
+   ```
+
+5. **Activar HTTPS y proxy:**
+
+   ```bash
+   cp /opt/init/deploy/nginx-ssl.conf /etc/nginx/sites-available/init.com.mx
+   nginx -t && systemctl reload nginx
+   ```
+
+6. **Renovación automática** (certbot suele configurar un timer al instalarlo):
+
+   ```bash
+   systemctl enable certbot.timer
+   systemctl start certbot.timer
+   ```
+
+   Para comprobar que la renovación funciona:
+
+   ```bash
+   certbot renew --dry-run
+   ```
+
+### Comprobar
+
+- **https://init.com.mx** → sitio en HTTPS  
+- **https://www.init.com.mx** → redirige a **https://init.com.mx**  
+- El certificado se renueva solo; no hace falta hacer nada más.
 
 ## Resumen rápido
 

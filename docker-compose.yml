@@ -1,7 +1,8 @@
+# La app escucha en 8080 para que nginx en el host use 80/443 (HTTPS)
 services:
   web:
     build: .
     ports:
-      - "80:80"
+      - "8080:80"
     restart: unless-stopped
     container_name: init-web
