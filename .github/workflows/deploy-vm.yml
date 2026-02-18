@@ -1,3 +1,4 @@
+# Deploy automático: push a main → git pull + docker compose en la VM
 name: Deploy to VM (Droplet)
 
 on:
