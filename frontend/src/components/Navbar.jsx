@@ -31,10 +31,9 @@ const Navbar = () => {
         <div className="flex justify-between h-20">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center group">
-              <div className="h-10 w-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-                <span className="text-white font-bold text-xl">I</span>
-              </div>
-              <span className="ml-3 text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">INIT</span>
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white p-1 shadow-lg group-hover:shadow-xl transition-shadow">
+                <img src="/logoinit.jpg" alt="INIT" className="h-full w-full object-contain" />
+              </span>
             </Link>
           </div>
 

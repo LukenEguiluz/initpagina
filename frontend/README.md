@@ -1,3 +1,28 @@
+# INIT – Frontend (Vercel)
+
+Frontend estático de INIT: **4 socios, 1 trabajador senior y 1 becario**. Desplegable en Vercel sin backend.
+
+## Desplegar en Vercel
+
+1. Sube este proyecto a GitHub (o usa solo la carpeta `frontend`).
+2. En [vercel.com](https://vercel.com): **Add New** → **Project** → importa el repo.
+3. Configura el proyecto:
+   - **Root Directory:** `frontend`
+   - **Framework Preset:** Vite
+   - **Build Command:** `npm run build`
+   - **Output Directory:** `dist`
+4. Deploy. Las rutas (/, /team, /services, /contact, etc.) funcionan como SPA.
+
+## Desarrollo local
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

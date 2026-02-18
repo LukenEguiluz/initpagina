@@ -1,0 +1,23 @@
+# Dependencias (Vercel instala las suyas)
+node_modules
+
+# Entorno y scripts locales (no necesarios en build)
+.env
+.env.*
+!.env.example
+create_env.sh
+create-env-dev.sh
+create-env-production.sh
+
+# Docker / servidor (solo frontend estático en Vercel)
+Dockerfile
+nginx.conf
+nginx.conf.dokku
+.htaccess
+
+# Desarrollo y pruebas
+*.log
+.vite
+coverage
+.idea
+.vscode

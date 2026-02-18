@@ -99,9 +99,9 @@ const Home = () => {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl mb-8 shadow-2xl"
+              className="inline-flex items-center justify-center mb-8 rounded-3xl bg-white p-3 shadow-2xl"
             >
-              <span className="text-4xl font-bold text-white">I</span>
+              <img src="/logoinit.jpg" alt="INIT" className="w-24 h-24 md:w-28 md:h-28 object-contain" />
             </motion.div>
 
             {/* Main Heading */}
@@ -250,7 +250,7 @@ const Home = () => {
                 soluciones digitales de vanguardia.
               </p>
               <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-                Nuestro equipo está compuesto por 3 dueños, 1 dueña y 1 becario,
+                Nuestro equipo está compuesto por 4 socios, un trabajador senior y un becario,
                 todos comprometidos con ofrecer soluciones de la más alta
                 calidad y con un enfoque personalizado para cada cliente.
               </p>
@@ -280,7 +280,7 @@ const Home = () => {
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center">
                     <div className="text-4xl font-bold text-blue-400 mb-2">
-                      5
+                      6
                     </div>
                     <div className="text-sm text-slate-300">
                       Miembros del Equipo

@@ -70,9 +70,9 @@ const RegisterForm = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="mx-auto h-16 w-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl"
+            className="mx-auto flex justify-center rounded-2xl bg-white p-2 shadow-2xl"
           >
-            <span className="text-white font-bold text-2xl">I</span>
+            <img src="/logoinit.jpg" alt="INIT" className="h-16 w-16 object-contain" />
           </motion.div>
           <h2 className="mt-8 text-center text-4xl font-bold text-slate-900">
             Únete a INIT

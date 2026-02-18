@@ -117,6 +117,9 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
+            <div className="inline-flex items-center justify-center rounded-2xl bg-white p-2 shadow-lg mb-6">
+              <img src="/logoinit.jpg" alt="INIT" className="h-14 w-14 object-contain" />
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Nuestros Servicios
             </h1>

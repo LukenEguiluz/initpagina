@@ -15,6 +15,7 @@ const Contact = () => {
     email: "",
     subject: "",
     message: "",
+    website: "", // honeypot: los bots lo rellenan, los usuarios no lo ven
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState("idle");
@@ -28,6 +29,12 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Anti-bot: si el honeypot tiene valor, es un bot → no enviar
+    if (formData.website.trim() !== "") {
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
@@ -35,7 +42,7 @@ const Contact = () => {
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitStatus("success");
-      setFormData({ name: "", email: "", subject: "", message: "" });
+      setFormData({ name: "", email: "", subject: "", message: "", website: "" });
 
       // Resetear el estado después de 3 segundos
       setTimeout(() => {
@@ -48,14 +55,14 @@ const Contact = () => {
     {
       icon: EmailIcon,
       title: "Email",
-      value: "info@init.com.mx",
-      link: "mailto:info@init.com.mx",
+      value: "support@init.com.mx",
+      link: "mailto:support@init.com.mx",
     },
     {
       icon: PhoneIcon,
       title: "Teléfono",
-      value: "+52 55 1234 5678",
-      link: "tel:+525512345678",
+      value: "55 4761 7977",
+      link: "tel:+525547617977",
     },
     {
       icon: LocationIcon,
@@ -66,7 +73,7 @@ const Contact = () => {
     {
       icon: ScheduleIcon,
       title: "Horario",
-      value: "Lun - Vie: 9:00 - 18:00",
+      value: "7:00 - 22:00",
       link: "#",
     },
   ];
@@ -104,6 +111,9 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
+            <div className="inline-flex items-center justify-center rounded-2xl bg-white p-2 shadow-lg mb-6">
+              <img src="/logoinit.jpg" alt="INIT" className="h-14 w-14 object-contain" />
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Contáctanos
             </h1>
@@ -269,6 +279,23 @@ const Contact = () => {
                     />
                   </div>
 
+                  {/* Honeypot: oculto para usuarios; los bots lo rellenan y bloqueamos el envío */}
+                  <div
+                    className="absolute -left-[9999px] h-0 overflow-hidden opacity-0 pointer-events-none"
+                    aria-hidden="true"
+                  >
+                    <label htmlFor="website">No completar</label>
+                    <input
+                      type="text"
+                      id="website"
+                      name="website"
+                      value={formData.website}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      tabIndex={-1}
+                    />
+                  </div>
+
                   <button
                     type="submit"
                     disabled={isSubmitting}
@@ -349,7 +376,7 @@ const Contact = () => {
               clase mundial.
             </p>
             <a
-              href="mailto:info@init.com.mx"
+              href="mailto:support@init.com.mx"
               className="btn-primary text-lg px-8 py-4 inline-flex items-center group"
             >
               <EmailIcon className="h-5 w-5 mr-2" />
