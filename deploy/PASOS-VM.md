@@ -80,3 +80,17 @@ Al terminar:
 | 5 | `cd /opt/init` → `./deploy/setup-https.sh` |
 
 Nada más. La VM queda con la app en Docker y nginx con HTTPS y renovación automática.
+
+---
+
+## 6. Actualizar la app cuando subas cambios (pull manual)
+
+La VM **no** hace pull solo. Cada vez que hagas push al repo, entra por SSH y ejecuta:
+
+```bash
+cd /opt/init
+git pull
+docker compose up -d --build
+```
+
+Así se descargan los cambios y se vuelve a construir y levantar la app.
