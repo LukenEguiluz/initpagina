@@ -34,7 +34,7 @@ cd init
 docker compose up -d --build
 ```
 
-La app queda en el puerto **8080**. Puedes probar: `http://IP_DEL_DROPLET:8080`
+La app queda en el puerto **8081**. Puedes probar: `http://IP_DEL_DROPLET:8081`
 
 ---
 

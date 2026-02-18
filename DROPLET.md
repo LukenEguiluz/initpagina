@@ -115,7 +115,7 @@ Tras guardar, espera unos minutos (hasta 48 h en casos raros). Luego:
 
 ## 9. HTTPS con renovación automática
 
-El contenedor pasa a escuchar en el puerto **8080** del host para que nginx use el 80 y el 443. Así puedes tener HTTPS con Let's Encrypt y que el certificado se renueve solo.
+El contenedor pasa a escuchar en el puerto **8081** del host para que nginx use el 80 y el 443. Así puedes tener HTTPS con Let's Encrypt y que el certificado se renueve solo.
 
 ### Requisito
 
@@ -136,12 +136,12 @@ Cuando pida email, usa uno válido (p. ej. `admin@init.com.mx`). El script:
 
 1. Instala nginx y certbot
 2. Obtiene el certificado para init.com.mx y www.init.com.mx
-3. Configura nginx como proxy HTTPS hacia el contenedor (8080)
+3. Configura nginx como proxy HTTPS hacia el contenedor (8081)
 4. Activa el **timer de certbot** para que renueve el certificado solo (2 veces al día; Let's Encrypt renueva cuando faltan &lt; 30 días)
 
 ### Opción B – Paso a paso manual
 
-1. **Contenedor en 8080** (ya está así en `docker-compose.yml`):
+1. **Contenedor en 8081** (ya está así en `docker-compose.yml`):
 
    ```bash
    cd /opt/init && docker compose up -d --build
