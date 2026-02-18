@@ -1,12 +1,22 @@
-# INIT – Frontend (Vercel)
+# INIT – Frontend
 
-Frontend estático de INIT: **4 socios, 1 trabajador senior y 1 becario**. Desplegable en Vercel sin backend.
+Frontend estático de INIT: **4 socios, 1 trabajador senior y 1 becario**. Desplegable en Vercel o en un Droplet (Docker).
+
+## Desplegar con Docker (DigitalOcean Droplet)
+
+Build y ejecución en el servidor:
+
+```bash
+docker compose up -d --build
+```
+
+La app queda en el puerto 80. Guía completa: **[DROPLET.md](DROPLET.md)**.
 
 ## Desplegar en Vercel
 
 1. Conecta este repo en [vercel.com](https://vercel.com): **Add New** → **Project** → importa el repo.
-2. No hace falta configurar **Root Directory** (el proyecto está en la raíz).
-3. Deploy. Vercel detecta Vite; las rutas (/, /team, /services, /contact) funcionan como SPA.
+2. No configures Root Directory (el proyecto está en la raíz).
+3. Deploy. Las rutas (/, /team, /services, /contact) funcionan como SPA.
 
 ## Desarrollo local
 
