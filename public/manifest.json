@@ -1,0 +1,15 @@
+{
+  "name": "INIT - Desarrollo de Software",
+  "short_name": "INIT",
+  "description": "Empresa de desarrollo de software y consultoría en digitalización",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/Init-Logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
