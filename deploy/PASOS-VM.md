@@ -83,14 +83,14 @@ Nada más. La VM queda con la app en Docker y nginx con HTTPS y renovación auto
 
 ---
 
-## 6. Actualizar la app cuando subas cambios (pull manual)
+## 6. Actualizar la app cuando subas cambios
 
-La VM **no** hace pull solo. Cada vez que hagas push al repo, entra por SSH y ejecuta:
+**Opción A – Automático (recomendado):** Configura el deploy con GitHub Actions para que, al hacer push a `main`, la VM haga solo `git pull` y `docker compose up -d --build`. Instrucciones en **[deploy/DEPLOY-AUTOMATICO.md](DEPLOY-AUTOMATICO.md)**.
+
+**Opción B – Manual:** Entra por SSH y ejecuta:
 
 ```bash
 cd /opt/init
 git pull
 docker compose up -d --build
 ```
-
-Así se descargan los cambios y se vuelve a construir y levantar la app.
