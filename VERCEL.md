@@ -13,9 +13,7 @@ Este proyecto está preparado para desplegarse en [Vercel](https://vercel.com) c
 
 1. Entra en [vercel.com/new](https://vercel.com/new).
 2. Importa tu repositorio (GitHub/GitLab/Bitbucket).
-3. Si el repo tiene **varios proyectos** (por ejemplo backend y frontend), configura:
-   - **Root Directory:** `frontend`  
-     Así Vercel solo usará la carpeta del frontend.
+3. **No configures Root Directory**: el proyecto está en la raíz del repo.
 
 ### 2. Configuración del proyecto
 
@@ -43,15 +41,11 @@ No hace falta definir variables de entorno para que el sitio funcione (todo es e
 npm i -g vercel
 
 # Desde la raíz del repo
-cd frontend
 vercel
 
-# Seguir las preguntas; indicar que el directorio actual es el del proyecto.
 # Para producción:
 vercel --prod
 ```
-
-Si ejecutas `vercel` desde la raíz del repo (y no desde `frontend`), en el asistente indica que el **root** del proyecto es `frontend`, o ejecuta `vercel` desde dentro de `frontend`.
 
 ## Rutas (SPA)
 
