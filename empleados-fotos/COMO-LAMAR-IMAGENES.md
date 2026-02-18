@@ -1,6 +1,6 @@
 # Cómo nombrar las fotos de empleados
 
-Coloca en esta carpeta las fotos de cada empleado. Usa **exactamente** estos nombres de archivo para que la aplicación reconozca a cada persona.
+Coloca las fotos en **`public/empleados-fotos/`** (ahí la web las sirve). Usa los nombres indicados abajo. Usa **exactamente** estos nombres de archivo para que la aplicación reconozca a cada persona.
 
 ---
 
@@ -29,8 +29,7 @@ Coloca en esta carpeta las fotos de cada empleado. Usa **exactamente** estos nom
 ## Cómo debe quedar la carpeta
 
 ```
-empleados-fotos/
-├── COMO-LAMAR-IMAGENES.md
+public/empleados-fotos/
 ├── jimenez-guevara-enrique.jpg
 ├── guerrero-negrete-inaki.jpg
 ├── corona-del-rio-javier.jpg
