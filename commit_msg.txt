@@ -1,0 +1,1 @@
+Solo frontend: INIT para Vercel, equipo, logo, contacto, anti-bot, docs Vercel
