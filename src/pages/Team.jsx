@@ -1,10 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import PageHead from "../components/PageHead";
 import { teamMembers } from "../data/teamData";
 import {
   Email as EmailIcon,
   LinkedIn as LinkedInIcon,
   Person as PersonIcon,
+  CheckCircle as CheckCircleIcon,
 } from "@mui/icons-material";
 
 const Team = () => {
@@ -25,8 +28,9 @@ const Team = () => {
         <div className="w-48 h-48 mx-auto mb-6">
           <img
             src={member.image_url}
-            alt={member.name}
+            alt={`Foto de ${member.name}, ${member.position} en INIT, empresa de desarrollo de software`}
             className="w-full h-full object-cover object-top rounded-2xl shadow-lg"
+            loading="lazy"
           />
         </div>
       ) : (
@@ -37,9 +41,18 @@ const Team = () => {
       <h3 className="text-xl font-bold text-slate-900 mb-2">{member.name}</h3>
       <p className={`font-semibold mb-4 ${colorClass}`}>{member.position}</p>
       <p className="text-slate-600 text-sm mb-4 leading-relaxed">{member.bio}</p>
+      {member.achievement && (
+        <p className="text-slate-600 text-sm mb-4 leading-relaxed italic border-l-2 border-blue-200 pl-3">
+          {member.achievement}
+        </p>
+      )}
       <div className="mb-4">
-        <h4 className="text-sm font-semibold text-slate-900 mb-2">Especialidades:</h4>
-        <p className="text-xs text-slate-600 leading-relaxed">{member.expertise}</p>
+        <h4 className="text-sm font-semibold text-slate-900 mb-2">
+          {member.technologies ? "Tecnologías / Áreas:" : "Especialidades:"}
+        </h4>
+        <p className="text-xs text-slate-600 leading-relaxed">
+          {member.technologies || member.expertise}
+        </p>
       </div>
       <div className="flex justify-center space-x-3">
         {member.email && (
@@ -48,7 +61,7 @@ const Team = () => {
           </a>
         )}
         {member.linkedin && (
-          <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-600 transition-colors p-2 rounded-lg hover:bg-slate-100">
+          <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn de ${member.name}`} className="text-slate-400 hover:text-blue-600 transition-colors p-2 rounded-lg hover:bg-slate-100">
             <LinkedInIcon className="h-5 w-5" />
           </a>
         )}
@@ -58,6 +71,11 @@ const Team = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <PageHead
+        title="Nuestro Equipo de Desarrollo y Consultoría"
+        description="Conoce a los profesionales de INIT: 4 cofundadores, consultora senior y becario. Desarrollo de software y consultoría en digitalización en Estado de México."
+        path="/team"
+      />
       {/* Header */}
       <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -136,7 +154,7 @@ const Team = () => {
               <p className="text-xl text-slate-600">Los futuros líderes de la tecnología</p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+            <div className="flex flex-wrap justify-center gap-8">
               {interns.map((member, index) => (
                 <motion.div key={member.id} className="w-full max-w-sm">
                   <motion.div
@@ -148,7 +166,12 @@ const Team = () => {
                   >
                     {member.image_url ? (
                       <div className="w-40 h-40 mx-auto mb-6">
-                        <img src={member.image_url} alt={member.name} className="w-full h-full object-cover object-top rounded-2xl shadow-lg" />
+                        <img
+                          src={member.image_url}
+                          alt={`Foto de ${member.name}, ${member.position} en INIT, empresa de desarrollo de software`}
+                          className="w-full h-full object-cover object-top rounded-2xl shadow-lg"
+                          loading="lazy"
+                        />
                       </div>
                     ) : (
                       <div className="w-40 h-40 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg">
@@ -169,7 +192,7 @@ const Team = () => {
                         </a>
                       )}
                       {member.linkedin && (
-                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-emerald-600 transition-colors p-2 rounded-lg hover:bg-slate-100">
+                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn de ${member.name}`} className="text-slate-400 hover:text-emerald-600 transition-colors p-2 rounded-lg hover:bg-slate-100">
                           <LinkedInIcon className="h-5 w-5" />
                         </a>
                       )}
@@ -181,6 +204,49 @@ const Team = () => {
           </div>
         </section>
       )}
+
+      {/* Why work with us */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+              ¿Por qué trabajar con nosotros?
+            </h2>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+              Tiempo de respuesta ágil, equipo estable y metodología clara
+            </p>
+          </motion.div>
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="flex items-start gap-4">
+              <CheckCircleIcon className="h-8 w-8 text-emerald-500 flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="font-semibold text-slate-900 mb-1">Tiempo de respuesta</h3>
+                <p className="text-slate-600 text-sm">Respuesta rápida y comunicación directa con el equipo que desarrolla tu proyecto.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4">
+              <CheckCircleIcon className="h-8 w-8 text-emerald-500 flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="font-semibold text-slate-900 mb-1">Tamaño del equipo</h3>
+                <p className="text-slate-600 text-sm">Equipo de 6 personas: trato cercano y sin capas innecesarias.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4">
+              <CheckCircleIcon className="h-8 w-8 text-emerald-500 flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="font-semibold text-slate-900 mb-1">Metodología</h3>
+                <p className="text-slate-600 text-sm">Análisis, alcance definido y entregas iterativas para que veas avances desde el inicio.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Values Section */}
       <section className="py-20 gradient-bg text-white">

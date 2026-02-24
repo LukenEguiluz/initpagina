@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import PageHead from "../components/PageHead";
 import {
   Email as EmailIcon,
   Phone as PhoneIcon,
@@ -9,71 +10,92 @@ import {
   CheckCircle as CheckCircleIcon,
 } from "@mui/icons-material";
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const PROJECT_TYPES = [
+  "Aplicación web",
+  "Sistema empresarial",
+  "Consultoría",
+  "ERPinit",
+  "initlogistics",
+  "Otro",
+];
+
+const BUDGET_RANGES = [
+  "Menos de $50k MXN",
+  "$50k - $150k MXN",
+  "Más de $150k MXN",
+  "Prefiero no indicar",
+];
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
-    website: "", // honeypot: los bots lo rellenan, los usuarios no lo ven
+    projectType: "",
+    budget: "",
+    website: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState("idle");
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: null }));
+  };
+
+  const validate = () => {
+    const next = {};
+    if (!formData.name?.trim()) next.name = "El nombre es obligatorio.";
+    if (!formData.email?.trim()) next.email = "El email es obligatorio.";
+    else if (!EMAIL_REGEX.test(formData.email)) next.email = "Introduce un email válido.";
+    if (!formData.subject?.trim()) next.subject = "El asunto es obligatorio.";
+    if (!formData.message?.trim()) next.message = "El mensaje es obligatorio.";
+    setErrors(next);
+    return Object.keys(next).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Anti-bot: si el honeypot tiene valor, es un bot → no enviar
-    if (formData.website.trim() !== "") {
-      return;
-    }
+    if (formData.website?.trim()) return;
+    if (!validate()) return;
 
     setIsSubmitting(true);
     setSubmitStatus("idle");
-
-    // Simular envío del formulario
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitStatus("success");
-      setFormData({ name: "", email: "", subject: "", message: "", website: "" });
-
-      // Resetear el estado después de 3 segundos
-      setTimeout(() => {
-        setSubmitStatus("idle");
-      }, 3000);
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+        projectType: "",
+        budget: "",
+        website: "",
+      });
+      setErrors({});
+      setTimeout(() => setSubmitStatus("idle"), 5000);
     }, 2000);
   };
 
   const contactInfo = [
-    {
-      icon: EmailIcon,
-      title: "Email",
-      value: "support@init.com.mx",
-      link: "mailto:support@init.com.mx",
-    },
-    {
-      icon: PhoneIcon,
-      title: "Teléfono",
-      value: "55 4761 7977",
-      link: "tel:+525547617977",
-    },
+    { icon: EmailIcon, title: "Email", value: "support@init.com.mx", link: "mailto:support@init.com.mx" },
+    { icon: PhoneIcon, title: "Teléfono", value: "55 4761 7977", link: "tel:+525547617977" },
     {
       icon: LocationIcon,
       title: "Oficina",
-      value: "Ciudad de México, México",
-      link: "#",
+      value: "Ciudad López Mateos, Estado de México, México",
+      link: "https://www.google.com/maps/search/Ciudad+L%C3%B3pez+Mateos+Estado+de+M%C3%A9xico",
     },
     {
       icon: ScheduleIcon,
       title: "Horario",
-      value: "7:00 - 22:00",
+      value: "Lunes a viernes, 7:00 – 22:00 hrs (hora México central)",
       link: "#",
     },
   ];
@@ -99,10 +121,25 @@ const Contact = () => {
       answer:
         "Utilizamos las tecnologías más modernas y confiables, incluyendo React, Node.js, Python, Django, y servicios cloud como AWS y Azure.",
     },
+    {
+      question: "¿Trabajan con empresas fuera de CDMX/Estado de México?",
+      answer:
+        "Sí, trabajamos de forma remota con clientes en todo México y América Latina.",
+    },
+    {
+      question: "¿Ofrecen soluciones de trazabilidad y logística con RFID?",
+      answer:
+        "Sí, a través de initlogistics integramos lectores RFID para trazabilidad en tiempo real de activos, inventarios y operaciones logísticas.",
+    },
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <PageHead
+        title="Contacto | Solicita tu Proyecto de Software"
+        description="Solicita una propuesta o demo. INIT – desarrollo de software a medida y consultoría en digitalización. Ciudad López Mateos, Estado de México."
+        path="/contact"
+      />
       {/* Header */}
       <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -112,7 +149,7 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-flex items-center justify-center rounded-2xl bg-white p-2 shadow-lg mb-6">
-              <img src="/Init-Logo.svg" alt="INIT" className="h-14 w-14 object-contain" />
+              <img src="/Init-Logo.svg" alt="INIT – Logo" className="h-14 w-14 object-contain" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Contáctanos
@@ -217,9 +254,12 @@ const Contact = () => {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="input-field"
+                      className={`input-field ${errors.name ? "border-red-500" : ""}`}
                       placeholder="Tu nombre completo"
                     />
+                    {errors.name && (
+                      <p className="text-sm text-red-600 mt-1">{errors.name}</p>
+                    )}
                   </div>
 
                   <div>
@@ -236,9 +276,39 @@ const Contact = () => {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="input-field"
+                      className={`input-field ${errors.email ? "border-red-500" : ""}`}
                       placeholder="tu@email.com"
+                      aria-invalid={!!errors.email}
+                      aria-describedby={errors.email ? "email-error" : undefined}
                     />
+                    {errors.email && (
+                      <p id="email-error" className="text-sm text-red-600 mt-1">
+                        {errors.email}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="projectType"
+                      className="block text-sm font-semibold text-slate-700 mb-2"
+                    >
+                      Tipo de proyecto
+                    </label>
+                    <select
+                      id="projectType"
+                      name="projectType"
+                      value={formData.projectType}
+                      onChange={handleChange}
+                      className="input-field"
+                    >
+                      <option value="">Selecciona una opción</option>
+                      {PROJECT_TYPES.map((opt) => (
+                        <option key={opt} value={opt}>
+                          {opt}
+                        </option>
+                      ))}
+                    </select>
                   </div>
 
                   <div>
@@ -255,9 +325,35 @@ const Contact = () => {
                       required
                       value={formData.subject}
                       onChange={handleChange}
-                      className="input-field"
+                      className={`input-field ${errors.subject ? "border-red-500" : ""}`}
                       placeholder="¿En qué podemos ayudarte?"
                     />
+                    {errors.subject && (
+                      <p className="text-sm text-red-600 mt-1">{errors.subject}</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="budget"
+                      className="block text-sm font-semibold text-slate-700 mb-2"
+                    >
+                      Presupuesto aproximado
+                    </label>
+                    <select
+                      id="budget"
+                      name="budget"
+                      value={formData.budget}
+                      onChange={handleChange}
+                      className="input-field"
+                    >
+                      <option value="">Selecciona un rango</option>
+                      {BUDGET_RANGES.map((opt) => (
+                        <option key={opt} value={opt}>
+                          {opt}
+                        </option>
+                      ))}
+                    </select>
                   </div>
 
                   <div>
@@ -274,9 +370,12 @@ const Contact = () => {
                       rows={5}
                       value={formData.message}
                       onChange={handleChange}
-                      className="input-field resize-none"
+                      className={`input-field resize-none ${errors.message ? "border-red-500" : ""}`}
                       placeholder="Cuéntanos más sobre tu proyecto..."
                     />
+                    {errors.message && (
+                      <p className="text-sm text-red-600 mt-1">{errors.message}</p>
+                    )}
                   </div>
 
                   {/* Honeypot: oculto para usuarios; los bots lo rellenan y bloqueamos el envío */}

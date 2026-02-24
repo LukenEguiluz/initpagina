@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import PageHead from "../components/PageHead";
 import {
   Code as CodeIcon,
   Computer as ComputerIcon,
@@ -17,14 +18,15 @@ const Services = () => {
     {
       icon: CodeIcon,
       title: "Desarrollo de Software",
+      intro:
+        "Ideal para empresas que necesitan un sistema a medida porque sus herramientas genéricas (Excel, formularios web) ya no pueden cubrir sus necesidades.",
       description:
-        "Creamos aplicaciones web y móviles personalizadas que se adaptan perfectamente a las necesidades de tu negocio.",
+        "Creamos aplicaciones web y móviles personalizadas que se adaptan a tu negocio: desde portales corporativos hasta sistemas de gestión y APIs escalables.",
       features: [
-        "Aplicaciones Web Premium",
-        "Sistemas Empresariales",
-        "APIs de Alto Rendimiento",
-        "Integración de Sistemas",
-        "Mantenimiento y Soporte",
+        "Aplicaciones web y portales a medida",
+        "Sistemas empresariales (inventario, ventas, expedientes)",
+        "APIs de alto rendimiento e integraciones",
+        "Mantenimiento y soporte continuo",
       ],
       color: "from-blue-500 to-blue-600",
       delay: 0.2,
@@ -32,14 +34,15 @@ const Services = () => {
     {
       icon: ComputerIcon,
       title: "Consultoría en Digitalización",
+      intro:
+        "Para directivos que saben que su empresa necesita digitalizarse pero no saben por dónde empezar.",
       description:
-        "Te ayudamos a transformar tu empresa con estrategias digitales innovadoras y procesos optimizados.",
+        "Te ayudamos con análisis de procesos, roadmap y priorización de proyectos para más eficiencia y decisiones basadas en datos.",
       features: [
-        "Análisis de Procesos Actuales",
-        "Estrategias de Transformación Digital",
-        "Optimización de Flujos de Trabajo",
-        "Capacitación de Equipos",
-        "Seguimiento y Mejora Continua",
+        "Análisis de procesos actuales y cuellos de botella",
+        "Estrategia de transformación digital y roadmap",
+        "Optimización de flujos de trabajo",
+        "Seguimiento y mejora continua",
       ],
       color: "from-purple-500 to-purple-600",
       delay: 0.4,
@@ -47,33 +50,42 @@ const Services = () => {
     {
       icon: RocketLaunchIcon,
       title: "Soluciones Digitales",
+      intro:
+        "Para operaciones que requieren automatización, trazabilidad o análisis de datos en tiempo real.",
       description:
-        "Implementamos tecnologías avanzadas para optimizar tus procesos empresariales y mejorar la productividad.",
+        "Implementamos integración de sistemas, cloud y herramientas que tu equipo puede usar desde el día uno.",
       features: [
-        "Automatización de Procesos",
-        "Inteligencia Artificial y Machine Learning",
-        "Análisis de Datos y Business Intelligence",
-        "Cloud Computing y DevOps",
-        "Ciberseguridad y Compliance",
+        "Automatización de procesos",
+        "Integración de sistemas y datos",
+        "Cloud computing y DevOps",
+        "Análisis de datos y Business Intelligence",
       ],
       color: "from-emerald-500 to-emerald-600",
       delay: 0.6,
     },
   ];
 
-  const technologies = [
-    "React",
-    "Node.js",
-    "Python",
-    "Django",
-    "PostgreSQL",
-    "MongoDB",
-    "AWS",
-    "Docker",
-    "Kubernetes",
-    "TensorFlow",
-    "Power BI",
-    "Tableau",
+  const technologyCategories = [
+    {
+      name: "Frontend",
+      items: ["React", "Vue.js"],
+    },
+    {
+      name: "Backend",
+      items: ["Node.js", "Python", "Django"],
+    },
+    {
+      name: "Base de datos",
+      items: ["PostgreSQL", "MongoDB"],
+    },
+    {
+      name: "Cloud e infraestructura",
+      items: ["AWS", "Docker", "Kubernetes"],
+    },
+    {
+      name: "IA y analytics",
+      items: ["TensorFlow", "Power BI", "Tableau"],
+    },
   ];
 
   const process = [
@@ -82,33 +94,43 @@ const Services = () => {
       title: "Análisis y Planificación",
       description:
         "Entendemos tus necesidades y diseñamos la solución más adecuada.",
+      timeframe: "1-2 semanas",
     },
     {
       step: 2,
       title: "Diseño y Prototipado",
       description: "Creamos prototipos y diseños que validan la funcionalidad.",
+      timeframe: "1-3 semanas",
     },
     {
       step: 3,
       title: "Desarrollo e Implementación",
       description:
         "Construimos la solución con las mejores prácticas y tecnologías.",
+      timeframe: "4-12+ semanas según alcance",
     },
     {
       step: 4,
       title: "Pruebas y Despliegue",
       description:
         "Realizamos pruebas exhaustivas y desplegamos en producción.",
+      timeframe: "1-2 semanas",
     },
     {
       step: 5,
       title: "Soporte y Mantenimiento",
       description: "Proporcionamos soporte continuo y mejoras iterativas.",
+      timeframe: "Continuo",
     },
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <PageHead
+        title="Servicios de Desarrollo de Software y Consultoría Digital"
+        description="Desarrollo de software a medida, consultoría en digitalización y soluciones digitales. Para empresas en México. Análisis, desarrollo, despliegue y soporte."
+        path="/services"
+      />
       {/* Header */}
       <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -118,7 +140,7 @@ const Services = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-flex items-center justify-center rounded-2xl bg-white p-2 shadow-lg mb-6">
-              <img src="/Init-Logo.svg" alt="INIT" className="h-14 w-14 object-contain" />
+              <img src="/Init-Logo.svg" alt="INIT – Logo" className="h-14 w-14 object-contain" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Nuestros Servicios
@@ -132,30 +154,35 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Services Section — un solo bloque por servicio (sin duplicar en DOM) */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-20">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-                className={`grid lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
-                }`}
-              >
-                <div className={index % 2 === 1 ? "lg:col-start-2" : ""}>
-                  <div
-                    className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br ${service.color} rounded-2xl mb-6 shadow-lg`}
-                  >
-                    <service.icon className="h-10 w-10 text-white" />
-                  </div>
+            {services.map((service, index) => {
+              const ServiceIcon = service.icon;
+              return (
+                <motion.div
+                  key={service.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: true }}
+                  className={`grid lg:grid-cols-2 gap-12 items-center ${
+                    index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
+                  }`}
+                >
+                  <div className={index % 2 === 1 ? "lg:col-start-2" : ""}>
+                    <div
+                      className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br ${service.color} rounded-2xl mb-6 shadow-lg`}
+                    >
+                      <ServiceIcon className="h-10 w-10 text-white" />
+                    </div>
                   <h2 className="text-3xl font-bold text-slate-900 mb-4">
                     {service.title}
                   </h2>
+                  <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+                    {service.intro}
+                  </p>
                   <p className="text-lg text-slate-600 mb-6 leading-relaxed">
                     {service.description}
                   </p>
@@ -170,28 +197,17 @@ const Services = () => {
                     ))}
                   </ul>
                 </div>
-
-                <div
-                  className={`card-luxury p-8 ${
-                    index % 2 === 1 ? "lg:col-start-1" : ""
-                  }`}
-                >
-                  <div className="text-center">
+                  <div className={index % 2 === 1 ? "lg:col-start-1" : ""}>
                     <div
-                      className={`inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br ${service.color} rounded-2xl mb-6 shadow-lg`}
+                      className={`inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br ${service.color} rounded-2xl shadow-lg`}
+                      aria-hidden="true"
                     >
-                      <service.icon className="h-12 w-12 text-white" />
+                      <ServiceIcon className="h-12 w-12 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                      {service.title}
-                    </h3>
-                    <p className="text-slate-600 leading-relaxed">
-                      {service.description}
-                    </p>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -215,24 +231,32 @@ const Services = () => {
             </p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"
-          >
-            {technologies.map((tech) => (
-              <div
-                key={tech}
-                className="card-luxury p-4 text-center hover:scale-105 transition-transform duration-300"
+          <div className="flex flex-col items-center space-y-8">
+            {technologyCategories.map((cat, catIndex) => (
+              <motion.div
+                key={cat.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: catIndex * 0.05 }}
+                viewport={{ once: true }}
+                className="text-center"
               >
-                <span className="text-sm font-medium text-slate-700">
-                  {tech}
-                </span>
-              </div>
+                <h3 className="text-lg font-semibold text-slate-800 mb-3">
+                  {cat.name}
+                </h3>
+                <div className="flex flex-wrap justify-center gap-3">
+                  {cat.items.map((tech) => (
+                    <span
+                      key={tech}
+                      className="card-luxury px-4 py-2 text-sm font-medium text-slate-700"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -276,6 +300,9 @@ const Services = () => {
                   {step.title}
                 </h3>
                 <p className="text-sm text-slate-600">{step.description}</p>
+                {step.timeframe && (
+                  <p className="text-xs text-slate-500 mt-1">{step.timeframe}</p>
+                )}
               </motion.div>
             ))}
           </div>
@@ -326,24 +353,27 @@ const Services = () => {
                 description:
                   "Nos enfocamos en generar valor real y medible para tu negocio.",
               },
-            ].map((benefit, index) => (
-              <motion.div
-                key={benefit.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center"
-              >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-white bg-opacity-20 rounded-2xl mb-6 backdrop-blur-sm">
-                  <benefit.icon className="h-8 w-8 text-white" />
-                </div>
+            ].map((benefit, index) => {
+              const BenefitIcon = benefit.icon;
+              return (
+                <motion.div
+                  key={benefit.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="text-center"
+                >
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-2xl mb-6 backdrop-blur-sm">
+                    <BenefitIcon sx={{ fontSize: 32 }} htmlColor="#ffffff" />
+                  </div>
                 <h3 className="text-xl font-semibold mb-4">{benefit.title}</h3>
-                <p className="text-slate-200 leading-relaxed">
-                  {benefit.description}
-                </p>
-              </motion.div>
-            ))}
+                  <p className="text-slate-200 leading-relaxed">
+                    {benefit.description}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>

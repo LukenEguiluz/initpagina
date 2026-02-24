@@ -1,12 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import PageHead from "../components/PageHead";
 import { solutions } from "../data/solutionsData";
 import { CheckCircle as CheckCircleIcon, Store as StoreIcon } from "@mui/icons-material";
 
 const Solutions = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <PageHead
+        title="ERPinit e initlogistics: Software Listo para Usar"
+        description="ERPinit: ERP para gestión integral. initlogistics: logística y trazabilidad con RFID. Soluciones listas para empresas en México."
+        path="/soluciones"
+      />
       {/* Header */}
       <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -16,7 +22,7 @@ const Solutions = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-flex items-center justify-center rounded-2xl bg-white p-2 shadow-lg mb-6">
-              <img src="/Init-Logo.svg" alt="INIT" className="h-14 w-14 object-contain" />
+              <img src="/Init-Logo.svg" alt="INIT – Logo" className="h-14 w-14 object-contain" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Soluciones listas
@@ -65,7 +71,7 @@ const Solutions = () => {
                   <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wide mb-3">
                     Incluye
                   </h3>
-                  <ul className="space-y-2 mb-8">
+                  <ul className="space-y-2 mb-6">
                     {solution.features.map((feature, i) => (
                       <li key={i} className="flex items-start text-slate-700">
                         <CheckCircleIcon className="h-5 w-5 text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
@@ -73,11 +79,29 @@ const Solutions = () => {
                       </li>
                     ))}
                   </ul>
+                  {solution.paraQuien && solution.paraQuien.length > 0 && (
+                    <>
+                      <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wide mb-3">
+                        Para quién es
+                      </h3>
+                      <ul className="space-y-2 mb-6">
+                        {solution.paraQuien.map((item, i) => (
+                          <li key={i} className="flex items-start text-slate-700 text-sm">
+                            <span className="text-blue-500 mr-2">•</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+                  {solution.priceNote && (
+                    <p className="text-sm text-slate-600 mb-4">{solution.priceNote}</p>
+                  )}
                   <Link
                     to="/contact"
-                    className="inline-flex items-center font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+                    className="btn-primary inline-flex items-center font-semibold px-6 py-3 rounded-xl"
                   >
-                    Contratar {solution.name}
+                    Solicitar demo gratuita
                     <span className="ml-1">→</span>
                   </Link>
                 </div>

@@ -1,12 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import PageHead from "../components/PageHead";
 import { portfolioClients } from "../data/portfolioData";
 import { CheckCircle as CheckCircleIcon } from "@mui/icons-material";
 
 const Portfolio = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <PageHead
+        title="Proyectos y Clientes: Casos de Éxito"
+        description="Clientes de INIT: CONFE, JOFRA, TRANSCOM, Geller Abogados. Desarrollo de software a medida, consultoría y soluciones digitales en México."
+        path="/portfolio"
+      />
       {/* Header */}
       <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -16,7 +22,7 @@ const Portfolio = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-flex items-center justify-center rounded-2xl bg-white p-2 shadow-lg mb-6">
-              <img src="/Init-Logo.svg" alt="INIT" className="h-14 w-14 object-contain" />
+              <img src="/Init-Logo.svg" alt="INIT – Logo" className="h-14 w-14 object-contain" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Proyectos y Clientes
@@ -58,12 +64,22 @@ const Portfolio = () => {
                           {client.name}
                         </h2>
                         <span className="text-sm font-medium text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
-                          {client.sector}
+                          {client.sectorDetail || client.sector}
                         </span>
                       </div>
-                      <p className="text-slate-600 mb-6 leading-relaxed">
+                      <p className="text-slate-600 mb-4 leading-relaxed">
                         {client.summary}
                       </p>
+                      {client.stack && (
+                        <p className="text-sm text-slate-500 mb-2">
+                          <span className="font-semibold text-slate-700">Stack:</span> {client.stack}
+                        </p>
+                      )}
+                      {client.result && (
+                        <p className="text-sm text-emerald-700 mb-4">
+                          <span className="font-semibold">Resultado:</span> {client.result}
+                        </p>
+                      )}
                       <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wide mb-3">
                         Lo que hemos realizado
                       </h3>
