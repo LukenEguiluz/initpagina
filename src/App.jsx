@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Team from './pages/Team';
 import Services from './pages/Services';
@@ -13,6 +14,7 @@ function AppRoutes() {
   const location = useLocation();
   return (
     <div className="App">
+      <ScrollToTop />
       <Navbar />
       <div key={location.pathname}>
         <Routes>
