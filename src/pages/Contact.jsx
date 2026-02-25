@@ -28,6 +28,8 @@ const BUDGET_RANGES = [
   "Prefiero no indicar",
 ];
 
+const WEB3FORMS_ACCESS_KEY = "fd5fa68e-ae1d-4ea6-9c2a-9d9450583d63";
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -45,7 +47,12 @@ const Contact = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: null }));
+    setErrors((prev) => {
+      const next = { ...prev, [name]: null };
+      if (prev.submit) delete next.submit;
+      return next;
+    });
+    if (submitStatus === "error") setSubmitStatus("idle");
   };
 
   const validate = () => {
@@ -66,21 +73,47 @@ const Contact = () => {
 
     setIsSubmitting(true);
     setSubmitStatus("idle");
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus("success");
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-        projectType: "",
-        budget: "",
-        website: "",
+    setErrors({});
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          subject: formData.subject.trim(),
+          message: formData.message.trim(),
+          "Tipo de proyecto": formData.projectType || "(no indicado)",
+          "Presupuesto aproximado": formData.budget || "(no indicado)",
+        }),
       });
-      setErrors({});
-      setTimeout(() => setSubmitStatus("idle"), 5000);
-    }, 2000);
+
+      const data = await res.json();
+
+      if (data.success) {
+        setSubmitStatus("success");
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+          projectType: "",
+          budget: "",
+          website: "",
+        });
+        setTimeout(() => setSubmitStatus("idle"), 5000);
+      } else {
+        setSubmitStatus("error");
+        setErrors({ submit: data.message || "No se pudo enviar. Intenta de nuevo." });
+      }
+    } catch (err) {
+      setSubmitStatus("error");
+      setErrors({ submit: "Error de conexión. Intenta de nuevo más tarde." });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -236,6 +269,12 @@ const Contact = () => {
                     <CheckCircleIcon className="h-5 w-5 mr-2" />
                     ¡Mensaje enviado exitosamente! Nos pondremos en contacto
                     contigo pronto.
+                  </div>
+                )}
+
+                {submitStatus === "error" && errors.submit && (
+                  <div className="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl">
+                    {errors.submit}
                   </div>
                 )}
 
