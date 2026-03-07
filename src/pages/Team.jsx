@@ -91,6 +91,27 @@ const Team = () => {
         </div>
       </section>
 
+      {/* Foto grupal: 4 cofundadores */}
+      <section className="py-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <img
+              src="/empleados-fotos/init-team.jpg"
+              alt="Los 4 cofundadores de INIT, empresa de desarrollo de software"
+              className="w-full rounded-2xl shadow-xl object-cover max-h-[420px]"
+              loading="eager"
+            />
+            <p className="text-slate-600 mt-4 font-medium">Los 4 cofundadores de INIT</p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Cofundadores Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
