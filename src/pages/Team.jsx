@@ -104,7 +104,7 @@ const Team = () => {
             <img
               src="/empleados-fotos/init-team.jpg"
               alt="Los 4 cofundadores de INIT, empresa de desarrollo de software"
-              className="w-full rounded-2xl shadow-xl object-cover max-h-[420px]"
+              className="w-full rounded-2xl shadow-xl object-contain"
               loading="eager"
             />
             <p className="text-slate-600 mt-4 font-medium">Los 4 cofundadores de INIT</p>
