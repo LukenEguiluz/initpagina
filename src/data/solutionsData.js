@@ -21,7 +21,7 @@ export const solutions = [
       "Equipos que quieren dejar Excel y pasar a un sistema centralizado",
     ],
     priceNote: "Desde $X/mes según módulos y usuarios (consulta con nosotros)",
-    color: "from-blue-500 to-indigo-600",
+    color: "from-init-green to-init-green-bright",
     initial: "E",
   },
   {
@@ -43,7 +43,7 @@ export const solutions = [
       "Almacenes que requieren integración con lectores RFID",
     ],
     priceNote: "Desde $X/mes según volumen y módulos (consulta con nosotros)",
-    color: "from-emerald-500 to-teal-600",
+    color: "from-init-green to-init-green-bright",
     initial: "i",
   },
 ];

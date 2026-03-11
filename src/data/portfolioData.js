@@ -18,7 +18,7 @@ export const portfolioClients = [
     stack: "React, Node.js, bases de datos relacionales",
     result: "Procesos y atención mejorados con sistemas centralizados.",
     initial: "C",
-    color: "from-blue-500 to-blue-600",
+    color: "from-init-green to-init-green-bright",
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ export const portfolioClients = [
     stack: "Python, Django, APIs, integraciones",
     result: "Operaciones más eficientes y soporte continuo post-implementación.",
     initial: "J",
-    color: "from-purple-500 to-purple-600",
+    color: "from-init-dark to-init-green",
   },
   {
     id: 3,
@@ -54,7 +54,7 @@ export const portfolioClients = [
     stack: "React, Node.js, APIs REST, bases de datos",
     result: "Operaciones más ordenadas y seguimiento en tiempo real.",
     initial: "T",
-    color: "from-emerald-500 to-emerald-600",
+    color: "from-init-green to-init-green-bright",
   },
   {
     id: 4,
@@ -72,6 +72,6 @@ export const portfolioClients = [
     stack: "Aplicaciones web, gestión documental, workflows",
     result: "Mejor organización y menos tiempo en tareas repetitivas.",
     initial: "G",
-    color: "from-amber-500 to-orange-600",
+    color: "from-init-dark to-init-green-bright",
   },
 ];

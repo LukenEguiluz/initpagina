@@ -2,12 +2,22 @@
 /* index.css */
 @import "tailwindcss";
 
+@theme {
+  /* Paleta INIT */
+  --color-init-black: #000000;
+  --color-init-dark: #45454d;
+  --color-init-gray: #8d8d8d;
+  --color-init-light: #d6d8d7;
+  --color-init-green: #368040;
+  --color-init-green-bright: #21a14a;
+}
+
 @layer base {
   html {
     font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   }
   body {
-    @apply bg-slate-50 text-slate-900 antialiased;
+    @apply bg-init-light text-init-dark antialiased;
   }
   h1,
   h2,
@@ -23,48 +33,48 @@
 @layer components {
   /* Botones */
   .btn-primary {
-    @apply bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1;
+    @apply bg-init-green hover:bg-init-green-bright text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1;
   }
 
   .btn-secondary {
-    @apply bg-white text-slate-800 hover:bg-slate-50 font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl border border-slate-200 transition-all duration-300 transform hover:-translate-y-1;
+    @apply bg-white text-init-dark hover:bg-init-light font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl border border-init-light transition-all duration-300 transform hover:-translate-y-1;
   }
 
   .btn-luxury {
-    @apply bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-900 hover:to-black text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1;
+    @apply bg-init-black hover:bg-init-dark text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1;
   }
 
   /* Tarjetas */
   .card {
-    @apply bg-white rounded-2xl shadow-xl border border-slate-100 hover:shadow-2xl transition-all duration-300;
+    @apply bg-white rounded-2xl shadow-xl border border-init-light hover:shadow-2xl transition-all duration-300;
   }
 
   .card-luxury {
-    @apply bg-gradient-to-br from-slate-50 to-white rounded-2xl shadow-xl border border-slate-200 hover:shadow-2xl transition-all duration-300;
+    @apply bg-gradient-to-br from-init-light to-white rounded-2xl shadow-xl border border-init-light hover:shadow-2xl transition-all duration-300;
   }
 
   /* Campos de entrada */
   .input-field {
-    @apply w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white shadow-sm;
+    @apply w-full px-4 py-3 border border-init-gray rounded-xl focus:outline-none focus:ring-2 focus:ring-init-green focus:border-transparent bg-white shadow-sm;
   }
 
   /* Gradientes */
   .gradient-bg {
-    @apply bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900;
+    @apply bg-gradient-to-br from-init-black via-init-dark to-init-black;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+    @apply text-init-green-bright;
   }
 
   /* Efectos */
   .glass-effect {
-    @apply backdrop-blur-md bg-white/80 border border-white/20;
+    @apply backdrop-blur-md bg-white/80 border border-init-light;
   }
 
   /* Borde con gradiente */
   .luxury-border {
-    @apply rounded-2xl p-[1px] bg-gradient-to-r from-blue-500/20 to-purple-500/20;
+    @apply rounded-2xl p-[1px] bg-gradient-to-r from-init-green/20 to-init-green-bright/20;
   }
 
   .luxury-inner {

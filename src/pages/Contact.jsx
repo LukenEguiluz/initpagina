@@ -167,7 +167,7 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-init-light to-white">
       <PageHead
         title="Contacto | Solicita tu Proyecto de Software"
         description="Solicita una propuesta o demo. INIT – desarrollo de software a medida y consultoría en digitalización. Ciudad López Mateos, Estado de México."
@@ -213,7 +213,7 @@ const Contact = () => {
               <div className="space-y-6">
                 {contactInfo.map((info) => (
                   <div key={info.title} className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-init-green to-init-green-bright rounded-xl flex items-center justify-center shadow-lg">
                       <info.icon className="h-6 w-6 text-white" />
                     </div>
                     <div>
@@ -222,7 +222,7 @@ const Contact = () => {
                       </h3>
                       <a
                         href={info.link}
-                        className="text-slate-600 hover:text-blue-600 transition-colors"
+                        className="text-slate-600 hover:text-init-green transition-colors"
                       >
                         {info.value}
                       </a>

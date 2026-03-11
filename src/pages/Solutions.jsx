@@ -7,7 +7,7 @@ import { CheckCircle as CheckCircleIcon, Store as StoreIcon } from "@mui/icons-m
 
 const Solutions = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-init-light to-white">
       <PageHead
         title="ERPinit e initlogistics: Software Listo para Usar"
         description="ERPinit: ERP para gestión integral. initlogistics: logística y trazabilidad con RFID. Soluciones listas para empresas en México."
@@ -74,7 +74,7 @@ const Solutions = () => {
                   <ul className="space-y-2 mb-6">
                     {solution.features.map((feature, i) => (
                       <li key={i} className="flex items-start text-slate-700">
-                        <CheckCircleIcon className="h-5 w-5 text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
+                        <CheckCircleIcon className="h-5 w-5 text-init-green-bright mr-3 mt-0.5 flex-shrink-0" />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -87,7 +87,7 @@ const Solutions = () => {
                       <ul className="space-y-2 mb-6">
                         {solution.paraQuien.map((item, i) => (
                           <li key={i} className="flex items-start text-slate-700 text-sm">
-                            <span className="text-blue-500 mr-2">•</span>
+                            <span className="text-init-green mr-2">•</span>
                             <span>{item}</span>
                           </li>
                         ))}

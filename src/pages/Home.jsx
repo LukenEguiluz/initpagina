@@ -29,7 +29,7 @@ const Home = () => {
         "Sistemas empresariales (inventario, ventas, expedientes)",
         "APIs de alto rendimiento e integraciones",
       ],
-      color: "from-blue-500 to-blue-600",
+      color: "from-init-green to-init-green-bright",
       delay: 0.2,
     },
     {
@@ -42,7 +42,7 @@ const Home = () => {
         "Roadmap digital y priorización",
         "Optimización de flujos de trabajo",
       ],
-      color: "from-purple-500 to-purple-600",
+      color: "from-init-dark to-init-green",
       delay: 0.4,
     },
     {
@@ -55,7 +55,7 @@ const Home = () => {
         "Cloud y despliegue seguro",
         "Automatización de tareas repetitivas",
       ],
-      color: "from-emerald-500 to-emerald-600",
+      color: "from-init-green to-init-green-bright",
       delay: 0.6,
     },
   ];
@@ -242,7 +242,7 @@ const Home = () => {
                 viewport={{ once: true }}
                 className="text-center"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mb-4 shadow-lg">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-init-green to-init-green-bright rounded-2xl mb-4 shadow-lg">
                   <stat.icon className="h-8 w-8 text-white" />
                 </div>
                 <div className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">
@@ -259,7 +259,7 @@ const Home = () => {
       </section>
 
       {/* What we do / For whom */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+      <section className="py-20 bg-gradient-to-br from-init-light to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -279,23 +279,23 @@ const Home = () => {
             </p>
             <ul className="space-y-3 text-slate-700">
               <li className="flex items-center">
-                <CheckCircleIcon className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                <CheckCircleIcon className="h-5 w-5 text-init-green-bright mr-3 flex-shrink-0" />
                 Desarrollo de aplicaciones web y portales a medida
               </li>
               <li className="flex items-center">
-                <CheckCircleIcon className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                <CheckCircleIcon className="h-5 w-5 text-init-green-bright mr-3 flex-shrink-0" />
                 Sistemas empresariales (gestión, inventario, ventas, expedientes)
               </li>
               <li className="flex items-center">
-                <CheckCircleIcon className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                <CheckCircleIcon className="h-5 w-5 text-init-green-bright mr-3 flex-shrink-0" />
                 APIs e integraciones para conectar tus sistemas
               </li>
               <li className="flex items-center">
-                <CheckCircleIcon className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                <CheckCircleIcon className="h-5 w-5 text-init-green-bright mr-3 flex-shrink-0" />
                 Consultoría en digitalización y optimización de procesos
               </li>
               <li className="flex items-center">
-                <CheckCircleIcon className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                <CheckCircleIcon className="h-5 w-5 text-init-green-bright mr-3 flex-shrink-0" />
                 Proyectos en México y Estado de México
               </li>
             </ul>
@@ -410,7 +410,7 @@ const Home = () => {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="bg-gradient-to-br from-slate-800 via-blue-900 to-slate-900 rounded-3xl p-8 text-white shadow-2xl">
+              <div className="bg-gradient-to-br from-init-black via-init-dark to-init-black rounded-3xl p-8 text-white shadow-2xl">
                 <h3 className="text-3xl font-bold mb-6">Nuestra Misión</h3>
                 <p className="text-lg mb-8 leading-relaxed">
                   Transformar empresas a través de la innovación tecnológica,
@@ -419,7 +419,7 @@ const Home = () => {
                 </p>
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-blue-400 mb-2">
+                    <div className="text-4xl font-bold text-init-green-bright mb-2">
                       6
                     </div>
                     <div className="text-sm text-slate-300">
@@ -427,7 +427,7 @@ const Home = () => {
                     </div>
                   </div>
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-blue-400 mb-2">
+                    <div className="text-4xl font-bold text-init-green-bright mb-2">
                       100%
                     </div>
                     <div className="text-sm text-slate-300">Compromiso</div>
@@ -436,9 +436,9 @@ const Home = () => {
               </div>
 
               {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full animate-float"></div>
+              <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-init-green to-init-green-bright rounded-full animate-float"></div>
               <div
-                className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full animate-float"
+                className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-br from-init-green to-init-green-bright rounded-full animate-float"
                 style={{ animationDelay: "2s" }}
               ></div>
             </motion.div>
@@ -447,7 +447,7 @@ const Home = () => {
       </section>
 
       {/* Success cases */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+      <section className="py-20 bg-gradient-to-br from-init-light to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -488,7 +488,7 @@ const Home = () => {
                   {item.solution}
                 </p>
                 <p className="text-slate-700 text-sm font-medium">
-                  <span className="text-emerald-600">Resultado:</span>{" "}
+                  <span className="text-init-green-bright">Resultado:</span>{" "}
                   {item.result}
                 </p>
               </motion.div>
@@ -534,7 +534,7 @@ const Home = () => {
       </section>
 
       {/* Why choose us */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+      <section className="py-20 bg-gradient-to-br from-init-light to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -564,7 +564,7 @@ const Home = () => {
                   viewport={{ once: true }}
                   className="flex items-start space-x-4 p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-init-green to-init-green-bright rounded-xl flex items-center justify-center">
                     <BenefitIcon className="h-6 w-6 text-white" />
                   </div>
                   <span className="text-lg font-medium text-slate-800">

@@ -15,7 +15,7 @@ const Team = () => {
   const seniors = teamMembers.filter((member) => member.role === "senior");
   const interns = teamMembers.filter((member) => member.role === "intern");
 
-  const MemberCard = ({ member, index, gradient = "from-blue-500 to-purple-600", colorClass = "text-blue-600" }) => (
+  const MemberCard = ({ member, index, gradient = "from-init-green to-init-green-bright", colorClass = "text-init-green" }) => (
     <motion.div
       key={member.id}
       initial={{ opacity: 0, y: 20 }}
@@ -42,7 +42,7 @@ const Team = () => {
       <p className={`font-semibold mb-4 ${colorClass}`}>{member.position}</p>
       <p className="text-slate-600 text-sm mb-4 leading-relaxed">{member.bio}</p>
       {member.achievement && (
-        <p className="text-slate-600 text-sm mb-4 leading-relaxed italic border-l-2 border-blue-200 pl-3">
+        <p className="text-slate-600 text-sm mb-4 leading-relaxed italic border-l-2 border-init-green pl-3">
           {member.achievement}
         </p>
       )}
@@ -56,12 +56,12 @@ const Team = () => {
       </div>
       <div className="flex justify-center space-x-3">
         {member.email && (
-          <a href={`mailto:${member.email}`} className="text-slate-400 hover:text-blue-600 transition-colors p-2 rounded-lg hover:bg-slate-100">
+          <a href={`mailto:${member.email}`} className="text-slate-400 hover:text-init-green transition-colors p-2 rounded-lg hover:bg-init-light">
             <EmailIcon className="h-5 w-5" />
           </a>
         )}
         {member.linkedin && (
-          <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn de ${member.name}`} className="text-slate-400 hover:text-blue-600 transition-colors p-2 rounded-lg hover:bg-slate-100">
+          <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn de ${member.name}`} className="text-slate-400 hover:text-init-green transition-colors p-2 rounded-lg hover:bg-init-light">
             <LinkedInIcon className="h-5 w-5" />
           </a>
         )}
@@ -70,7 +70,7 @@ const Team = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-init-light to-white">
       <PageHead
         title="Nuestro Equipo de Desarrollo y Consultoría"
         description="Conoce a los profesionales de INIT: 4 cofundadores, consultora senior y becario. Desarrollo de software y consultoría en digitalización en Estado de México."
@@ -128,7 +128,7 @@ const Team = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {owners.map((member, index) => (
-              <MemberCard key={member.id} member={member} index={index} gradient="from-blue-500 to-purple-600" colorClass="text-blue-600" />
+              <MemberCard key={member.id} member={member} index={index} gradient="from-init-green to-init-green-bright" colorClass="text-init-green" />
             ))}
           </div>
         </div>
@@ -152,7 +152,7 @@ const Team = () => {
             <div className="flex justify-center">
               <div className="max-w-md w-full">
                 {seniors.map((member, index) => (
-                  <MemberCard key={member.id} member={member} index={index} gradient="from-amber-500 to-orange-600" colorClass="text-amber-600" />
+                  <MemberCard key={member.id} member={member} index={index} gradient="from-init-dark to-init-green" colorClass="text-init-dark" />
                 ))}
               </div>
             </div>
@@ -195,12 +195,12 @@ const Team = () => {
                         />
                       </div>
                     ) : (
-                      <div className="w-40 h-40 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg">
+                      <div className="w-40 h-40 bg-gradient-to-br from-init-green to-init-green-bright rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg">
                         <PersonIcon className="h-16 w-16 text-white" />
                       </div>
                     )}
                     <h3 className="text-lg font-bold text-slate-900 mb-2">{member.name}</h3>
-                    <p className="text-emerald-600 font-semibold mb-4">{member.position}</p>
+                    <p className="text-init-green font-semibold mb-4">{member.position}</p>
                     <p className="text-slate-600 text-sm mb-4 leading-relaxed">{member.bio}</p>
                     <div className="mb-4">
                       <h4 className="text-sm font-semibold text-slate-900 mb-2">Tecnologías:</h4>
@@ -208,12 +208,12 @@ const Team = () => {
                     </div>
                     <div className="flex justify-center space-x-3">
                       {member.email && (
-                        <a href={`mailto:${member.email}`} className="text-slate-400 hover:text-emerald-600 transition-colors p-2 rounded-lg hover:bg-slate-100">
+                        <a href={`mailto:${member.email}`} className="text-slate-400 hover:text-init-green transition-colors p-2 rounded-lg hover:bg-init-light">
                           <EmailIcon className="h-5 w-5" />
                         </a>
                       )}
                       {member.linkedin && (
-                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn de ${member.name}`} className="text-slate-400 hover:text-emerald-600 transition-colors p-2 rounded-lg hover:bg-slate-100">
+                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn de ${member.name}`} className="text-slate-400 hover:text-init-green transition-colors p-2 rounded-lg hover:bg-init-light">
                           <LinkedInIcon className="h-5 w-5" />
                         </a>
                       )}
@@ -245,21 +245,21 @@ const Team = () => {
           </motion.div>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="flex items-start gap-4">
-              <CheckCircleIcon className="h-8 w-8 text-emerald-500 flex-shrink-0 mt-1" />
+              <CheckCircleIcon className="h-8 w-8 text-init-green-bright flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-semibold text-slate-900 mb-1">Tiempo de respuesta</h3>
                 <p className="text-slate-600 text-sm">Respuesta rápida y comunicación directa con el equipo que desarrolla tu proyecto.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
-              <CheckCircleIcon className="h-8 w-8 text-emerald-500 flex-shrink-0 mt-1" />
+              <CheckCircleIcon className="h-8 w-8 text-init-green-bright flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-semibold text-slate-900 mb-1">Tamaño del equipo</h3>
                 <p className="text-slate-600 text-sm">Equipo de 6 personas: trato cercano y sin capas innecesarias.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
-              <CheckCircleIcon className="h-8 w-8 text-emerald-500 flex-shrink-0 mt-1" />
+              <CheckCircleIcon className="h-8 w-8 text-init-green-bright flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-semibold text-slate-900 mb-1">Metodología</h3>
                 <p className="text-slate-600 text-sm">Análisis, alcance definido y entregas iterativas para que veas avances desde el inicio.</p>

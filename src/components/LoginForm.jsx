@@ -47,7 +47,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-init-light via-white to-init-light py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
           <motion.div
@@ -65,7 +65,7 @@ const LoginForm = () => {
             ¿No tienes una cuenta?{" "}
             <Link
               to="/register"
-              className="font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+              className="font-semibold text-init-green hover:text-init-green-bright transition-colors"
             >
               Regístrate aquí
             </Link>

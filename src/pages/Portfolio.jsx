@@ -7,7 +7,7 @@ import { CheckCircle as CheckCircleIcon } from "@mui/icons-material";
 
 const Portfolio = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-init-light to-white">
       <PageHead
         title="Proyectos y Clientes: Casos de Éxito"
         description="Clientes de INIT: CONFE, JOFRA, TRANSCOM, Geller Abogados. Desarrollo de software a medida, consultoría y soluciones digitales en México."
@@ -76,7 +76,7 @@ const Portfolio = () => {
                         </p>
                       )}
                       {client.result && (
-                        <p className="text-sm text-emerald-700 mb-4">
+                        <p className="text-sm text-init-green mb-4">
                           <span className="font-semibold">Resultado:</span> {client.result}
                         </p>
                       )}
@@ -89,7 +89,7 @@ const Portfolio = () => {
                             key={i}
                             className="flex items-start text-slate-700"
                           >
-                            <CheckCircleIcon className="h-5 w-5 text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
+                            <CheckCircleIcon className="h-5 w-5 text-init-green-bright mr-3 mt-0.5 flex-shrink-0" />
                             <span>{item}</span>
                           </li>
                         ))}

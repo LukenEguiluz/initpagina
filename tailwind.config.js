@@ -3,6 +3,16 @@ export default {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      colors: {
+        init: {
+          black: "#000000",
+          dark: "#45454d",
+          gray: "#8d8d8d",
+          light: "#d6d8d7",
+          green: "#368040",
+          "green-bright": "#21a14a",
+        },
+      },
       fontFamily: {
         sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
         serif: ["Plus Jakarta Sans", "system-ui", "sans-serif"],

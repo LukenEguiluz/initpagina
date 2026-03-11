@@ -28,7 +28,7 @@ const Services = () => {
         "APIs de alto rendimiento e integraciones",
         "Mantenimiento y soporte continuo",
       ],
-      color: "from-blue-500 to-blue-600",
+      color: "from-init-green to-init-green-bright",
       delay: 0.2,
     },
     {
@@ -44,7 +44,7 @@ const Services = () => {
         "Optimización de flujos de trabajo",
         "Seguimiento y mejora continua",
       ],
-      color: "from-purple-500 to-purple-600",
+      color: "from-init-dark to-init-green",
       delay: 0.4,
     },
     {
@@ -60,7 +60,7 @@ const Services = () => {
         "Cloud computing y DevOps",
         "Análisis de datos y Business Intelligence",
       ],
-      color: "from-emerald-500 to-emerald-600",
+      color: "from-init-green to-init-green-bright",
       delay: 0.6,
     },
   ];
@@ -125,7 +125,7 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-init-light to-white">
       <PageHead
         title="Servicios de Desarrollo de Software y Consultoría Digital"
         description="Desarrollo de software a medida, consultoría en digitalización y soluciones digitales. Para empresas en México. Análisis, desarrollo, despliegue y soporte."
@@ -189,7 +189,7 @@ const Services = () => {
                   <ul className="space-y-3">
                     {service.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start">
-                        <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                        <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-br from-init-green to-init-green-bright rounded-full flex items-center justify-center mr-3 mt-0.5">
                           <CheckCircleIcon className="h-4 w-4 text-white" />
                         </div>
                         <span className="text-slate-700">{feature}</span>
@@ -289,11 +289,11 @@ const Services = () => {
                 className="text-center"
               >
                 <div className="relative">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl shadow-lg">
+                  <div className="w-16 h-16 bg-gradient-to-br from-init-green to-init-green-bright rounded-2xl flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl shadow-lg">
                     {step.step}
                   </div>
                   {index < process.length - 1 && (
-                    <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-blue-200 to-purple-200 transform translate-x-4"></div>
+                    <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-init-green/30 to-init-green-bright/30 transform translate-x-4"></div>
                   )}
                 </div>
                 <h3 className="text-lg font-semibold text-slate-900 mb-2">
