@@ -10,116 +10,111 @@ import {
   Support as SupportIcon,
   TrendingUp as TrendingUpIcon,
   CheckCircle as CheckCircleIcon,
-  Star as StarIcon,
 } from "@mui/icons-material";
 
 const Services = () => {
   const services = [
     {
       icon: CodeIcon,
-      title: "Desarrollo de Software",
+      image: "/servicios/desarrollo-software-a-medida.png",
+      title: "Desarrollo de Software a Medida",
       intro:
-        "Ideal para empresas que necesitan un sistema a medida porque sus herramientas genéricas (Excel, formularios web) ya no pueden cubrir sus necesidades.",
+        "Para empresas que han crecido más allá de Excel, procesos manuales o sistemas limitados.",
       description:
-        "Creamos aplicaciones web y móviles personalizadas que se adaptan a tu negocio: desde portales corporativos hasta sistemas de gestión y APIs escalables.",
+        "Diseñamos y desarrollamos aplicaciones web y móviles adaptadas completamente a tu operación, permitiendo automatizar procesos, centralizar información y escalar sin fricción.",
+      featuresLabel: "Lo que desarrollamos:",
       features: [
-        "Aplicaciones web y portales a medida",
-        "Sistemas empresariales (inventario, ventas, expedientes)",
-        "APIs de alto rendimiento e integraciones",
-        "Mantenimiento y soporte continuo",
+        "Aplicaciones web empresariales",
+        "Portales corporativos y plataformas internas",
+        "Sistemas de gestión (inventarios, expedientes, ventas, operaciones)",
+        "Integración con APIs y servicios externos",
+        "Aplicaciones móviles empresariales",
+        "Plataformas SaaS escalables",
       ],
+      result: "Procesos automatizados, menos errores operativos y mayor control del negocio.",
       color: "from-init-green to-init-green-bright",
       delay: 0.2,
     },
     {
       icon: ComputerIcon,
-      title: "Consultoría en Digitalización",
+      image: "/servicios/consultoria-transformacion-digital.png",
+      title: "Consultoría en Transformación Digital",
       intro:
-        "Para directivos que saben que su empresa necesita digitalizarse pero no saben por dónde empezar.",
+        "Muchas empresas saben que necesitan digitalizarse, pero no tienen claridad sobre por dónde empezar.",
       description:
-        "Te ayudamos con análisis de procesos, roadmap y priorización de proyectos para más eficiencia y decisiones basadas en datos.",
+        "En INIT analizamos tu operación y diseñamos un plan tecnológico claro y ejecutable.",
+      featuresLabel: "Incluye:",
       features: [
-        "Análisis de procesos actuales y cuellos de botella",
-        "Estrategia de transformación digital y roadmap",
-        "Optimización de flujos de trabajo",
-        "Seguimiento y mejora continua",
+        "Diagnóstico de procesos actuales",
+        "Identificación de cuellos de botella",
+        "Diseño de arquitectura tecnológica",
+        "Roadmap de transformación digital",
+        "Prioridad de proyectos con impacto real",
       ],
+      result: "Una estrategia tecnológica alineada con el crecimiento del negocio.",
       color: "from-init-dark to-init-green",
       delay: 0.4,
     },
     {
       icon: RocketLaunchIcon,
-      title: "Soluciones Digitales",
+      image: "/servicios/soluciones-tecnologicas-integracion.png",
+      title: "Soluciones Tecnológicas e Integración de Sistemas",
       intro:
-        "Para operaciones que requieren automatización, trazabilidad o análisis de datos en tiempo real.",
+        "Para empresas que necesitan automatizar operaciones, conectar sistemas o trabajar con datos en tiempo real.",
       description:
-        "Implementamos integración de sistemas, cloud y herramientas que tu equipo puede usar desde el día uno.",
+        "Implementamos plataformas tecnológicas robustas que integran información y procesos en un solo ecosistema digital.",
+      featuresLabel: "Soluciones que implementamos:",
       features: [
-        "Automatización de procesos",
-        "Integración de sistemas y datos",
-        "Cloud computing y DevOps",
-        "Análisis de datos y Business Intelligence",
+        "Automatización de procesos operativos",
+        "Integración entre sistemas y bases de datos",
+        "Infraestructura cloud escalable",
+        "Dashboards y Business Intelligence",
+        "Plataformas de análisis de datos",
+        "Sistemas con inteligencia artificial",
       ],
+      result: "Mayor eficiencia operativa y decisiones basadas en información confiable.",
       color: "from-init-green to-init-green-bright",
       delay: 0.6,
     },
   ];
 
   const technologyCategories = [
-    {
-      name: "Frontend",
-      items: ["React", "Vue.js"],
-    },
-    {
-      name: "Backend",
-      items: ["Node.js", "Python", "Django"],
-    },
-    {
-      name: "Base de datos",
-      items: ["PostgreSQL", "MongoDB"],
-    },
-    {
-      name: "Cloud e infraestructura",
-      items: ["AWS", "Docker", "Kubernetes"],
-    },
-    {
-      name: "IA y analytics",
-      items: ["TensorFlow", "Power BI", "Tableau"],
-    },
+    { name: "Frontend", items: ["React", "Vue.js"] },
+    { name: "Backend", items: ["Node.js", "Python", "Django"] },
+    { name: "Bases de datos", items: ["PostgreSQL", "MongoDB"] },
+    { name: "Infraestructura", items: ["AWS", "Docker", "Kubernetes"] },
+    { name: "IA y análisis de datos", items: ["TensorFlow", "Power BI", "Tableau"] },
   ];
 
   const process = [
     {
       step: 1,
       title: "Análisis y Planificación",
-      description:
-        "Entendemos tus necesidades y diseñamos la solución más adecuada.",
-      timeframe: "1-2 semanas",
+      description: "Analizamos tu negocio y definimos la arquitectura de la solución.",
+      timeframe: "1–2 semanas",
     },
     {
       step: 2,
       title: "Diseño y Prototipado",
-      description: "Creamos prototipos y diseños que validan la funcionalidad.",
-      timeframe: "1-3 semanas",
+      description: "Creamos prototipos funcionales para validar la solución antes del desarrollo.",
+      timeframe: "1–3 semanas",
     },
     {
       step: 3,
       title: "Desarrollo e Implementación",
-      description:
-        "Construimos la solución con las mejores prácticas y tecnologías.",
-      timeframe: "4-12+ semanas según alcance",
+      description: "Construimos el sistema utilizando tecnologías escalables y buenas prácticas.",
+      timeframe: "4–12 semanas (según alcance)",
     },
     {
       step: 4,
       title: "Pruebas y Despliegue",
-      description:
-        "Realizamos pruebas exhaustivas y desplegamos en producción.",
-      timeframe: "1-2 semanas",
+      description: "Realizamos pruebas técnicas y funcionales antes de lanzar la solución.",
+      timeframe: "1–2 semanas",
     },
     {
       step: 5,
-      title: "Soporte y Mantenimiento",
-      description: "Proporcionamos soporte continuo y mejoras iterativas.",
+      title: "Soporte y Mejora Continua",
+      description: "Monitoreamos, optimizamos y evolucionamos el sistema con el tiempo.",
       timeframe: "Continuo",
     },
   ];
@@ -145,65 +140,79 @@ const Services = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Nuestros Servicios
             </h1>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Ofrecemos soluciones integrales diseñadas para impulsar la
-              transformación digital y el crecimiento sostenible de tu empresa
-              con tecnologías de vanguardia.
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              En <strong>INIT</strong> diseñamos y desarrollamos soluciones tecnológicas que ayudan a empresas a{" "}
+              <strong>automatizar procesos, escalar operaciones y tomar decisiones basadas en datos</strong>.
+              Trabajamos desde la estrategia hasta la implementación completa de software y plataformas digitales.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Services Section — un solo bloque por servicio (sin duplicar en DOM) */}
+      {/* Services Section — imagen + contenido por servicio */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-20">
+          <div className="space-y-24">
             {services.map((service, index) => {
               const ServiceIcon = service.icon;
+              const isImageRight = index % 2 === 1;
               return (
                 <motion.div
                   key={service.title}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                  className={`grid lg:grid-cols-2 gap-12 items-center ${
-                    index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
-                  }`}
+                  transition={{ duration: 0.7 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  className={`grid lg:grid-cols-2 gap-10 lg:gap-16 items-center ${isImageRight ? "lg:grid-flow-dense" : ""}`}
                 >
-                  <div className={index % 2 === 1 ? "lg:col-start-2" : ""}>
-                    <div
-                      className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br ${service.color} rounded-2xl mb-6 shadow-lg`}
-                    >
-                      <ServiceIcon className="h-10 w-10 text-white" />
+                  <div className={isImageRight ? "lg:col-start-2" : ""}>
+                    <div className="relative overflow-hidden rounded-2xl shadow-2xl ring-1 ring-black/5 aspect-[4/3] bg-init-dark">
+                      <img
+                        src={service.image}
+                        alt={`Entorno de trabajo y tecnología para ${service.title}, INIT`}
+                        className="absolute inset-0 w-full h-full object-cover object-center"
+                        loading={index === 0 ? "eager" : "lazy"}
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-init-black/40 via-transparent to-transparent pointer-events-none" aria-hidden />
                     </div>
-                  <h2 className="text-3xl font-bold text-slate-900 mb-4">
-                    {service.title}
-                  </h2>
-                  <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                    {service.intro}
-                  </p>
-                  <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                    {service.description}
-                  </p>
-                  <ul className="space-y-3">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start">
-                        <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-br from-init-green to-init-green-bright rounded-full flex items-center justify-center mr-3 mt-0.5">
-                          <CheckCircleIcon className="h-4 w-4 text-white" />
-                        </div>
-                        <span className="text-slate-700">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                  <div className={index % 2 === 1 ? "lg:col-start-1" : ""}>
+                  </div>
+                  <div className={isImageRight ? "lg:col-start-1 lg:row-start-1" : ""}>
                     <div
-                      className={`inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br ${service.color} rounded-2xl shadow-lg`}
-                      aria-hidden="true"
+                      className={`inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br ${service.color} rounded-xl mb-5 shadow-lg`}
                     >
-                      <ServiceIcon className="h-12 w-12 text-white" />
+                      <ServiceIcon className="h-7 w-7 text-white" />
                     </div>
+                    <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4 tracking-tight">
+                      {service.title}
+                    </h2>
+                    <p className="text-lg text-slate-600 mb-4 leading-relaxed">
+                      {service.intro}
+                    </p>
+                    <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+                      {service.description}
+                    </p>
+                    {service.featuresLabel && (
+                      <p className="text-sm font-semibold text-slate-800 uppercase tracking-wide mb-3">
+                        {service.featuresLabel}
+                      </p>
+                    )}
+                    <ul className="space-y-2.5 mb-6">
+                      {service.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-start gap-3">
+                          <div className="flex-shrink-0 w-5 h-5 bg-init-green rounded-full flex items-center justify-center mt-0.5">
+                            <CheckCircleIcon className="h-3 w-3 text-white" />
+                          </div>
+                          <span className="text-slate-700">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    {service.result && (
+                      <p className="text-init-green font-semibold border-l-2 border-init-green pl-4 py-1">
+                        <span className="text-slate-800">Resultado: </span>
+                        {service.result}
+                      </p>
+                    )}
                   </div>
                 </motion.div>
               );
@@ -226,8 +235,7 @@ const Services = () => {
               Tecnologías que Utilizamos
             </h2>
             <p className="text-xl text-slate-600">
-              Trabajamos con las tecnologías más modernas y confiables del
-              mercado
+              Trabajamos con tecnologías modernas y robustas utilizadas por empresas globales.
             </p>
           </motion.div>
 
@@ -274,7 +282,7 @@ const Services = () => {
               Nuestro Proceso de Trabajo
             </h2>
             <p className="text-xl text-slate-600">
-              Metodología probada que garantiza resultados excepcionales
+              Aplicamos una metodología estructurada que reduce riesgos y garantiza resultados.
             </p>
           </motion.div>
 
@@ -309,7 +317,43 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Benefits Section */}
+      {/* Industries */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+              Industrias en las que somos expertos
+            </h2>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+              Trabajamos con empresas de distintos sectores que buscan automatizar, escalar y tomar mejores decisiones.
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="flex flex-wrap justify-center gap-4"
+          >
+            {["Salud", "Logística", "Manufactura", "Retail", "Gobierno"].map((industry) => (
+              <span
+                key={industry}
+                className="px-6 py-3 bg-init-light text-init-dark font-semibold rounded-xl border border-init-gray/30"
+              >
+                {industry}
+              </span>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Why work with INIT */}
       <section className="py-20 gradient-bg text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -320,38 +364,35 @@ const Services = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              ¿Por qué Elegirnos?
+              ¿Por qué trabajar con INIT?
             </h2>
-            <p className="text-xl text-slate-200">
-              Ventajas que nos distinguen y garantizan resultados excepcionales
-            </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
                 icon: SpeedIcon,
-                title: "Rapidez",
+                title: "Velocidad de ejecución",
                 description:
-                  "Entregamos proyectos en tiempo récord sin comprometer la calidad.",
+                  "Desarrollamos soluciones tecnológicas en tiempos significativamente menores que agencias tradicionales.",
               },
               {
                 icon: SecurityIcon,
-                title: "Seguridad",
+                title: "Seguridad y arquitectura sólida",
                 description:
-                  "Implementamos las mejores prácticas de seguridad en todos nuestros proyectos.",
+                  "Implementamos estándares de seguridad y escalabilidad desde el inicio.",
               },
               {
                 icon: SupportIcon,
-                title: "Soporte 24/7",
+                title: "Soporte permanente",
                 description:
-                  "Estamos disponibles para resolver cualquier problema que pueda surgir.",
+                  "Acompañamos a nuestros clientes durante toda la vida del sistema.",
               },
               {
                 icon: TrendingUpIcon,
-                title: "Resultados",
+                title: "Impacto real en el negocio",
                 description:
-                  "Nos enfocamos en generar valor real y medible para tu negocio.",
+                  "Nuestro enfoque no es solo tecnológico: desarrollamos soluciones que generan eficiencia, ahorro y crecimiento.",
               },
             ].map((benefit, index) => {
               const BenefitIcon = benefit.icon;
